@@ -1,0 +1,200 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+:root {
+    --black-color: #1D1615;
+    --bg-color: #F1EBE6;
+    --light-yellow: #F5E9D6;
+    --white-color: #fff;
+    --text-color: #444444;
+    --gradient-color: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,229,178,1) 88%, rgba(255,212,124,1) 100%);
+    --secondary-font: "DM Sans", sans-serif;
+}
+
+
+@font-face {
+    font-family: 'New kansas Regular';
+    src: url(/fonts/NewKansasRegular.otf);
+    font-family: 'Avenir Next Regular';
+    src: url(/fonts/avenir-next-regular.ttf);
+    font-family: 'New kansas Medium';
+    src: url(/fonts/NewKansasMedium.otf);
+    font-family: 'New kansas Semibold';
+    src: url(/fonts/NewKansasSemiBold.otf);
+    font-family: 'New kansas Bold';
+    src: url(/fonts/NewKansasBold.otf);
+    font-family: 'AvenirNext Bold';
+    src: url(/fonts/AvenirNext-Bold.otf);
+}
+
+
+.NewKansas-regular {
+    font-family:'New kansas Regular';
+    font-weight: 400;
+    font-style: normal;
+}
+.AvenirNext-regular {
+    font-family:'AvenirNext Regular';
+    font-weight: 400;
+    font-style: normal;
+}
+
+.NewKansas-medium {
+    font-family: 'New kansas Medium';
+    font-weight: 500;
+    font-style: normal;
+}
+
+.NewKansas-semibold {
+    font-family: 'New kansas Semibold';
+    font-weight: 600;
+    font-style: normal;
+}
+
+.NewKansas-bold {
+    font-family: 'New kansas Bold';
+    font-weight: 700;
+    font-style: normal;
+}
+/* .AvenirNext-bold {
+    font-family: 'AvenirNext Bold';
+    font-weight: 700;
+    font-style: normal;
+} */
+
+
+/* Butons */
+
+.bg-color{
+    background-color: var(--bg-color);
+}
+
+.primary-btn{
+    padding: 10px 32px;
+    width: fit-content;
+    font-size: 16px;
+    font-family: var(--secondary-font);
+    font-weight: normal !important;
+    color: var(--white-color);
+    background-color: var(--black-color);
+    cursor: pointer;
+    transition: all ease 0.3s;
+    border-radius: 5px;
+}
+.primary-btn:hover{
+    box-shadow: 0px 4px 10px #00000028;
+}
+.gradient-btn{
+    padding: 10px 32px !important;
+    width: fit-content;
+    font-size: 16px;
+    font-family: var(--secondary-font) !important;
+    font-weight: normal !important;
+    color: var(--black-color);
+    background-color: var(--light-yellow);
+    cursor: pointer;
+    transition: all ease 0.3s;
+    border-radius: 5px;
+}
+.gradient-btn:hover{
+    box-shadow: 0px 4px 10px #00000028;
+    border: 1px solid var(--light-yellow);
+    color: var(--light-yellow);
+    background-color: transparent;
+}
+
+.wrapper{
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.text-color{
+    color: var(--text-color) !important;
+}
+
+a{
+    text-decoration: none;
+    color: var(--black-color);
+}
+
+h1{
+    font-size: 38px;
+    font-family: 'New kansas Medium';
+}
+
+h2{
+    font-size: 30px;
+    font-family: 'New kansas Medium';
+    line-height: 45px;
+}
+
+
+h4{
+    font-size: 22px;
+    font-family: 'New kansas Medium';
+}
+
+p{
+    font-size: 16px;
+    font-family: var(--secondary-font) !important;
+}
+
+.m-100{
+    margin-top: 100px;
+}
+
+/* form */
+
+.form-control {
+    height: 41px;
+    width: 100%;
+    padding: 9px;
+    border-radius: 10px;
+    color: var(--black-color);
+    font-family: var(--secondary-font);
+    font-size: 14px;
+    border: 1px solid #DFD8D8;
+}
+
+.form-control::placeholder {
+    color: #999999 !important;
+    font-size: 14px;
+}
+
+.form-label{
+    color: var(--text-color);
+    font-family: var(--secondary-font);
+}
+
+/* navbar */
+
+.nav-header{
+    position: relative;
+    z-index: 23;
+}
+
+.navbar{
+    padding: 20px 40px !important;
+    border-radius: 0px 0px 20px 20px;
+    font-family: var(--secondary-font);
+}
+
+.navbar .navbar-nav{
+    column-gap: 20px;
+}
+.navbar .navbar-nav .nav-item .nav-link{
+    border-bottom: 1px solid transparent;
+    transition: all ease-in 0.3s;
+}
+.navbar .navbar-nav .nav-item .nav-link:hover{
+    border-bottom: 1px solid var(--black-color);
+}
+
+
+/* footer */
+footer{
+    padding: 34px 0px;
+    font-family: var(--secondary-font);
+    background-color: var(--white-color) !important;
+}
+
