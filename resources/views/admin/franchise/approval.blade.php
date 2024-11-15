@@ -21,7 +21,7 @@
               <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-justified-home" aria-controls="navs-justified-home" aria-selected="true"><span class="d-none d-sm-block"><i class="tf-icons bx bx-loader bx-sm me-1_5 align-text-bottom"></i> Pending List <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-label-danger ms-1_5 pt-50">3</span></span><i class="bx bx-home bx-sm d-sm-none"></i></button>
             </li>
             <li class="nav-item" role="presentation">
-              <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-justified-profile" aria-controls="navs-justified-profile" aria-selected="false" tabindex="-1"><span class="d-none d-sm-block"><i class="tf-icons bx bxs-user-check bx-sm me-1_5 align-text-bottom"></i> Approved Users List</span><i class="bx bx-user bx-sm d-sm-none"></i></button>
+              <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-justified-profile" aria-controls="navs-justified-profile" aria-selected="false" tabindex="-1"><span class="d-none d-sm-block"><i class="tf-icons bx bxs-user-check bx-sm me-1_5 align-text-bottom"></i> Approved List</span><i class="bx bx-user bx-sm d-sm-none"></i></button>
             </li>
           </ul>
           <div class="tab-content">

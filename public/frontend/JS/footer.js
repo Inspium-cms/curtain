@@ -28,7 +28,7 @@ class CustomFooter extends HTMLElement {
                 <div class="nav-link-row mt-4">
                     <nav class="navbar justify-content-center"
                         style="border-top: 1px solid; border-bottom: 1px solid; border-radius: 0px; padding: 0px !important;">
-                        <ul class="navbar-nav d-flex flex-row p-0" style="column-gap: 64px;">
+                        <ul class="navbar-nav d-flex flex-row p-0" style="column-gap: 64px; flex-wrap: wrap;">
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="#">Home</a>
                             </li>

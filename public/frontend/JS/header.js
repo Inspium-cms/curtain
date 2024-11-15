@@ -30,6 +30,9 @@ class CustomHeader extends HTMLElement {
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Contact Us</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link primary-line-btn pe-4 ps-4">Franchise Registration</a>
+                                </li>
                             </ul>
                         </div>
                     </div>

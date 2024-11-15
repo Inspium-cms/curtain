@@ -3,6 +3,17 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FranchiseTempController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\AppointmentController;
+use Spatie\Permission\Models\Role;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AdminController;
+
+
+Route::post('/appointments', [AppointmentController::class, 'store'])->name('appointments.store');
+Route::get('/appointments', function () {
+    return view('frontend.schedule_appointment');
+});
 Route::get('/', function () {
     return view('frontend.index');
 });
@@ -22,15 +33,18 @@ Route::get('/user_create', function () {
     return view('admin.user.create');
 })->name('user_create');
 Auth::routes();
+Route::get('appointments_list', [AppointmentController::class, 'index'])->name('appointments.list.index');
+// web.php
+Route::post('/appointments/assign', [AppointmentController::class, 'assign'])->name('appointments.assign');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::middleware(['auth', 'role:Super Admin'])->group(function () {
-    Route::get('/super-admin/dashboard', [SuperAdminController::class, 'index'])->name('super.admin.dashboard');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('super.admin.dashboard');
 });
 
 Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::get('franchise_approval', [FranchiseTempController::class, 'index'])->name('franchise.temp.index');
-
+   
 // Route to approve franchise
 Route::get('franchise/{id}/approve', [FranchiseTempController::class, 'approve'])->name('franchise.approve');
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
@@ -61,3 +75,19 @@ Route::get('franchise/{id}/approve', [FranchiseTempController::class, 'approve']
 
 Route::post('/custom-register', [RegisterController::class, 'register'])
     ->name('custom.register.submit');
+
+// User
+Route::get('user_list', [RegisterController::class, 'user_list'])->name('user.list');
+
+
+//Product
+
+
+
+// Route to store the product data
+Route::post('/product/store', [ProductController::class, 'store'])->name('products.store');
+Route::resource('products', ProductController::class);
+// Route to display the form
+Route::get('/product_create', [ProductController::class, 'create'])->name('products.create');
+Route::get('products_{id}', [ProductController::class, 'show'])->name('products.show');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');

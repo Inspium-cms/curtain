@@ -1,3 +1,4 @@
+
 <header class="nav-header d-flex justify-content-between align-items-start">
     <a href="#" class="logo"><img src="{{ asset('frontend/images/logo.svg') }}" alt=""></a>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -10,7 +11,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">About Us</a>
@@ -27,8 +28,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contact Us</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="/franchise_registration" class="nav-link primary-line-btn pe-4 ps-4">Franchise Registration</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
-</header>
+</header> 

@@ -1,142 +1,85 @@
-<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme" data-bg-class="bg-menu-theme"
-    style="
-  touch-action: none;
-  user-select: none;
-  -webkit-user-drag: none;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-">
-    <div class="app-brand demo">
-        <a href="/" class="app-brand-link">
-            {{-- <span class="app-brand-logo demo">
-                
-            </span> --}}
-            <span class="app-brand-text demo menu-text fw-bold ms-2">C A B</span>
-            {{-- <span class="">Curtain And Blinds</span> --}}
-        </a>
-
-        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
-            <i class="bx bx-chevron-left bx-sm d-flex align-items-center justify-content-center"></i>
-        </a>
+<div class="sidebar">
+    <div class="menu-btn"><i class="bi bi-list"></i></div>
+    <div class="head">
+        <div class="user-img">
+            <img src="{{ asset('images/logo.svg') }}" alt="">
+        </div>
     </div>
+    <div class="nav">
+        <div class="menu w-100">
+            <ul class="p-0">
+                @if (Auth::user()->getRoleNames()[0] == 'Super Admin')
+                    <li class="active"><a href="{{ route('super.admin.dashboard') }}"><i class="bi bi-house"></i><span class="text">Dashboard</span></a></li>
+                    <li><a href="/user_list"><i class="bi bi-people"></i><span class="text">Users</span></a></li>
+                    <li><a href="{{ route('franchise.temp.index') }}"><i class="bi bi-building-add"></i><span class="text">Franchise</span></a></li>
+                    <li><a href="/products"><i class="bi bi-box2"></i><span class="text">Products</span></a></li>
+                    <li><a href="{{ route('appointments.list.index') }}"><i class="bi bi-journal"></i></i><span class="text">Appointments</span></a></li>
+                    <li><a href=""><i class="bi bi-receipt-cutoff"></i><span class="text">Quotations</span></a></li>
+                    <li><a href="#"><i class="bi bi-database"></i><span class="text">Masters</span><i class="arrow ph-bold ph-caret-down"></i></a>
+                        <ul class="sub-menu">
+                            <li><a href=""><span class="text">ZIP Codes</span></a></li>
+                            <li><a href=""><span class="text">Product Type</span></a></li>
+                            <li><a href=""><span class="text">Supplier Name</span></a></li>
+                            <li><a href=""><span class="text">Supplier Collection</span></a></li>
+                            <li><a href=""><span class="text">Supplier Design</span></a></li>
+                            <li><a href=""><span class="text">Color</span></a></li>
+                            <li><a href=""><span class="text">Composition</span></a></li>
+                            <li><a href=""><span class="text">Type</span></a></li>
+                            <li><a href=""><span class="text">Usage</span></a></li>
+                            <li><a href=""><span class="text">Design Type</span></a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><i class="bi bi-truck"></i><span class="text">Orders</span></a></li>
+                    <li><a href="#"><i class="bi bi-file-earmark-bar-graph"></i><span class="text">Reports</span></a></li>
+                @endif
+                @if (Auth::user()->getRoleNames()[0] == 'Admin')
+                    <li class="active"><a href="{{ route('super.admin.dashboard') }}"><i class="bi bi-house"></i><span class="text">Dashboard</span></a></li>
+                    <li><a href="{{ route('franchise.temp.index') }}"><i class="bi bi-building-add"></i><span class="text">Franchise</span></a></li>
+                    <li><a href="/products"><i class="bi bi-box2"></i><span class="text">Products</span></a></li>
+                    <li><a href="{{ route('appointments.list.index') }}"><i class="bi bi-journal"></i></i><span class="text">Appointments</span></a></li>
+                    <li><a href=""><i class="bi bi-receipt-cutoff"></i><span class="text">Quotations</span></a></li>
+                    <li><a href="#"><i class="bi bi-database"></i><span class="text">Masters</span><i class="arrow ph-bold ph-caret-down"></i></a>
+                        <ul class="sub-menu">
+                            <li><a href=""><span class="text">ZIP Codes</span></a></li>
+                            <li><a href=""><span class="text">Product Type</span></a></li>
+                            <li><a href=""><span class="text">Supplier Name</span></a></li>
+                            <li><a href=""><span class="text">Supplier Collection</span></a></li>
+                            <li><a href=""><span class="text">Supplier Design</span></a></li>
+                            <li><a href=""><span class="text">Color</span></a></li>
+                            <li><a href=""><span class="text">Composition</span></a></li>
+                            <li><a href=""><span class="text">Type</span></a></li>
+                            <li><a href=""><span class="text">Usage</span></a></li>
+                            <li><a href=""><span class="text">Design Type</span></a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><i class="bi bi-truck"></i><span class="text">Orders</span></a></li>
+                    <li><a href="#"><i class="bi bi-file-earmark-bar-graph"></i><span class="text">Reports</span></a></li>
+                @endif
+                @if (Auth::user()->getRoleNames()[0] == 'Franchise')
+                    <li class="active"><a href="{{ route('super.admin.dashboard') }}"><i class="bi bi-house"></i><span class="text">Dashboard</span></a></li>
+                    <li><a href="/products"><i class="bi bi-box2"></i><span class="text">Products</span></a></li>
+                    <li><a href="{{ route('appointments.list.index') }}"><i class="bi bi-journal"></i></i><span class="text">Appointments</span></a></li>
+                    <li><a href=""><i class="bi bi-receipt-cutoff"></i><span class="text">Quotations</span></a></li>
+                    <li><a href="#"><i class="bi bi-file-earmark-bar-graph"></i><span class="text">Reports</span></a></li>
 
-    <div class="menu-inner-shadow"></div>
-
-    <ul class="menu-inner py-1 ps ps--active-y">
-        <!-- Dashboards -->
-        <li class="menu-item active">
-            <a href="/dashboard" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-smile"></i>
-                <div class="text-truncate" data-i18n="Dashboards">
-                    Dashboards
-                </div>
-                
-            </a>
-        </li>
-
-        <!-- Layouts -->
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-layout"></i>
-                <div class="text-truncate" data-i18n="Manage Users">Manage Users</div>
-            </a>
-
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="/user_create"
-                        class="menu-link">
-                        <div class="text-truncate" data-i18n=" Users Registration">
-                            Users Registration
-                        </div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('franchise.temp.index') }}"
-                        class="menu-link">
-                        <div class="text-truncate" data-i18n="Users Approval">
-                            Users Approval
-                        </div>
-                    </a>
-                </li>
-                
-                
+                @endif
+                @if (Auth::user()->getRoleNames()[0] == 'Help Desk')
+                    <li class="active"><a href="{{ route('super.admin.dashboard') }}"><i class="bi bi-house"></i><span class="text">Dashboard</span></a></li>
+                    <li><a href="{{ route('appointments.list.index') }}"><i class="bi bi-journal"></i></i><span class="text">Appointments</span></a></li>
+                    <li><a href=""><i class="bi bi-receipt-cutoff"></i><span class="text">Quotations</span></a></li>
+                    <li><a href="#"><i class="bi bi-truck"></i><span class="text">Orders</span></a></li>
+                    <li><a href="#"><i class="bi bi-file-earmark-bar-graph"></i><span class="text">Reports</span></a></li>
+                @endif
+                @if (Auth::user()->getRoleNames()[0] == 'Fulfillment Desk')
+                    <li class="active"><a href="{{ route('super.admin.dashboard') }}"><i class="bi bi-house"></i><span class="text">Dashboard</span></a></li>
+                    <li><a href="#"><i class="bi bi-truck"></i><span class="text">Orders</span></a></li>
+                    <li><a href="#"><i class="bi bi-file-earmark-bar-graph"></i><span class="text">Reports</span></a></li>
+                @endif
+                @if (Auth::user()->getRoleNames()[0] == 'Data Entry Operator')
+                    <li class="active"><a href="{{ route('super.admin.dashboard') }}"><i class="bi bi-house"></i><span class="text">Dashboard</span></a></li>
+                    <li><a href="/products"><i class="bi bi-box2"></i><span class="text">Products</span></a></li>
+                @endif
             </ul>
-        </li>
-
-        <!-- Front Pages -->
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-store"></i>
-                <div class="text-truncate" data-i18n="Products">
-                    Products
-                </div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href=""
-                        class="menu-link" target="_blank">
-                        <div class="text-truncate" data-i18n="Inventory">Inventory</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href=""
-                        class="menu-link" target="_blank">
-                        <div class="text-truncate" data-i18n="Product Attribute">Product Attribute</div>
-                    </a>
-                </li>
-                
-            </ul>
-        </li>
-
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-check-shield"></i>
-                <div class="text-truncate" data-i18n="Roles &amp; Permissions">
-                    Roles &amp; Permissions
-                </div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href=""
-                        class="menu-link">
-                        <div class="text-truncate" data-i18n="Roles">Roles</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href=""
-                        class="menu-link">
-                        <div class="text-truncate" data-i18n="Permission">
-                            Permission
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-
-
-        <!-- Misc -->
-        <li class="menu-header small text-uppercase">
-            <span class="menu-header-text" data-i18n="Reports">Reports</span>
-        </li>
-        <li class="menu-item">
-            <a href="https://themeselection.com/support/" target="_blank" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-support"></i>
-                <div class="text-truncate" data-i18n="Sales Report">Sales Report</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/documentation/"
-                target="_blank" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-file"></i>
-                <div class="text-truncate" data-i18n="Pending Projects">
-                    Pending Projects
-                </div>
-            </a>
-        </li>
-        <div class="ps__rail-x" style="left: 0px; bottom: 0px">
-            <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px"></div>
         </div>
-        <div class="ps__rail-y" style="top: 0px; height: 843px; right: 4px">
-            <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 344px"></div>
-        </div>
-    </ul>
-</aside>
+    </div>
+  </div>

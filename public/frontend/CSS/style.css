@@ -16,6 +16,13 @@
     position: absolute;
     top: 0;
     left: 0;
+    max-width: 100%;
+    height: 420px;
+    object-fit: cover;
+}
+
+.main .homeBanner{
+    height: 100vh;
 }
 
 .hero {
@@ -23,6 +30,8 @@
     height: 70vh;
     display: flex;
     justify-content: end;
+    position: relative;
+    z-index: 1;
 }
 
 .hero .hero-content {
@@ -104,11 +113,11 @@
 
 /* FAQ */
 .accordion-item{
-    border-radius: 20px !important;
+    border-radius: 8px !important;
 }
 .accordion-button{
     background-color: var(--white-color) !important;
-    border-radius: 20px !important;
+    border-radius: 8px !important;
 }
 .accordion-item .accordion-body{
     font-family: var(--secondary-font);
@@ -153,8 +162,11 @@ right: 64px;
 .order-process{
     border-radius: 20px;
     background-color: var(--white-color);
+    line-height: normal;
 }
-
+.order-process .accordion-button{
+    line-height: normal;
+}
 .order-process .accordion .active{
     background-color: var(--light-yellow);
     transition: all ease 0.5s;
@@ -165,6 +177,7 @@ right: 64px;
     background-color: var(--light-yellow) !important;
     border-radius: 20px;
     border: none;
+    line-height: normal;
     box-shadow: none !important;
     transition: all ease 0.5s;
 }
@@ -172,13 +185,24 @@ right: 64px;
 .pointer{
     background-color: var(--bg-color);
     color: var(--black-color);
-    padding: 4px 23px;
+    padding: 5px 22px;
     margin-right: 12px;
-    border-radius: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 42px;
+    width: 42px;
+    border-radius: 50%;
     transition: all ease 0.5s;
 }
 .accordion-item.active .accordion-button.active-header .pointer {
     background-color: #fff; /* New background color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 42px;
+    width: 42px;
+    border-radius: 50%;
 }
 
 .accordion-collapse {
@@ -202,11 +226,11 @@ right: 64px;
     transition: color 0.3s ease;
 }
 
-.services-tab a:hover {
+.services-tab .active {
     color: #007bff; /* Change color on hover */
 }
 
-.services-tab a::before {
+.services-tab .active::before {
     content: "→"; /* Arrow symbol */
     position: absolute;
     left: 0;
@@ -217,7 +241,7 @@ right: 64px;
     color: #007bff; /* Arrow color */
 }
 
-.services-tab a:hover::before {
+.services-tab .active::before {
     opacity: 1;
     left: -10px; /* Move the arrow slightly to the left on hover */
 }
@@ -238,3 +262,26 @@ right: 64px;
 .requried{
     color: red;
 }
+
+.cab-usp{
+    padding: 24px;
+}
+
+.qrImage{
+    background-color: var(--white-color);
+    padding: 16px;
+    width: fit-content;
+    border-radius: 7px;
+    display: flex;
+    margin-top: 12px;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.qrImage img{
+    width: 120px;
+    height: 100%;
+    object-fit: cover;
+}
+

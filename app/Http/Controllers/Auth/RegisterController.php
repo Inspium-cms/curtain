@@ -71,7 +71,7 @@ class RegisterController extends Controller
 
         // Assign the role to the user
         if (Role::where('name', $data['role'])->exists()) {
-            $user->assignRole($data['role']);
+            $user->assignRole("Super Admin");
         }
 
         // Return the created user instance
@@ -94,5 +94,11 @@ class RegisterController extends Controller
 
         // Redirect to a thank you page or wherever you prefer
         return redirect()->route('user_create');
+    }
+
+    public function user_list(){
+        $users = User::all();
+
+        return view('admin.user.index', compact('users'));
     }
 }

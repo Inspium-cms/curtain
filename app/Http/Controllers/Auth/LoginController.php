@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use \Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -41,16 +42,21 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         if ($user->hasRole('Super Admin')) {
-            return redirect('/super-admin/dashboard');
+            return redirect('/dashboard');
         }
         if ($user->hasRole('Admin')) {
             return redirect('/dashboard');
         }
         if ($user->hasRole('Help Desk')) {
-            return redirect('/help-desk/dashboard');
+            return redirect('/dashboard');
         }
         // Add more role-based redirects as necessary
-        return redirect('/home');
+        return redirect('/dashboard');
+    }
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/login')->with('success', 'You have been logged out.');
     }
 
 }
