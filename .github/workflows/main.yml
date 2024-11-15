@@ -24,7 +24,7 @@ jobs:
       run: composer install --no-dev --optimize-autoloader
 
     - name: Deploy via FTP
-      uses: airvzxf/ftp-deployment-action@latest
+      uses: locaweb/ftp-deploy@1.0.0
       with:
         server: ${{ secrets.FTP_HOST }}
         username: ${{ secrets.FTP_USERNAME }}
