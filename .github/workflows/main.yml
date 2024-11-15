@@ -31,7 +31,7 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./ # Laravel project root
-        server-dir: /public_html/laravel-project # Update based on your cPanel directory
+        server-dir: /home/desiboybackpacke/public_html/curtain.phakirsarada.com # Update based on your cPanel directory
 
     - name: Run Laravel Artisan Commands
       run: |
