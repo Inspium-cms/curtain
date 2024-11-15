@@ -25,17 +25,17 @@ jobs:
 
     - name: Install Composer Dependencies
       run: composer install --no-dev --optimize-autoloader
-
-    - name: Deploy via FTP
-      uses: SamKirkland/FTP-Deploy-Action@v3.1.1
+      
+    - name: deploy 
+      uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
       with:
-        ftp-server: ${{ secrets.FTP_HOST }}
-        ftp-username: ${{ secrets.FTP_USERNAME }}
-        ftp-password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./
-        git-ftp-args: --auto-init
-        server-dir:  /home/desiboybackpacke/public_html/curtain.phakirsarada.com # Adjust this based on your hosting path
-        log-level: verbose
+        ftp_host: ${{ secrets.FTP_HOST }}
+        ftp_username: ${{ secrets.FTP_USERNAME }}
+        ftp_password: ${{ secrets.FTP_PASSWORD }}
+        local_source_dir: "./"
+        dist_target_dir: "/home/desiboybackpacke/public_html/curtain.phakirsarada.com"
+        delete: "true"
+        exclude: "'^logs/' '^README.md'"
 
     - name: Run Post-Deployment Commands
       run: |
