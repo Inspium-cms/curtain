@@ -23,14 +23,14 @@ jobs:
     - name: Install Composer Dependencies
       run: composer install --no-dev --optimize-autoloader
 
-    - name: Deploy via FTP
-      uses: im-machakata/FTP-Deploy-Action@v4.3.4
+    - name: Simple FTP deploy
+      uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
       with:
         server: ${{ secrets.FTP_HOST }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./ # Path to your Laravel project
-        server-dir: /public_html/laravel-project # Adjust this based on your hosting path
+        server-dir:  /home/desiboybackpacke/public_html/curtain.phakirsarada.com # Adjust this based on your hosting path
         log-level: verbose
 
     - name: Run Post-Deployment Commands
