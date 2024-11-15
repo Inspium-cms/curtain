@@ -24,7 +24,7 @@ jobs:
       run: composer install --no-dev --optimize-autoloader
 
     - name: Deploy via FTP
-      uses: locaweb/ftp-deploy@1.0.0
+      uses: im-machakata/FTP-Deploy-Action@v4.3.4
       with:
         server: ${{ secrets.FTP_HOST }}
         username: ${{ secrets.FTP_USERNAME }}
