@@ -23,8 +23,8 @@ jobs:
     - name: Install Composer Dependencies
       run: composer install --no-dev --optimize-autoloader
 
-    - name: Simple FTP deploy
-      uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
+    - name: Deploy via FTP
+      uses: SamKirkland/FTP-Deploy-Action@v3.1.1
       with:
         server: ${{ secrets.FTP_HOST }}
         username: ${{ secrets.FTP_USERNAME }}
