@@ -23,9 +23,6 @@ jobs:
     - name: Install Composer Dependencies
       run: composer install --no-dev --optimize-autoloader
 
-    - name: Build Production Files
-      run: npm install && npm run prod
-
     - name: Deploy via FTP
       uses: airvzxf/ftp-deployment-action@latest
       with:
