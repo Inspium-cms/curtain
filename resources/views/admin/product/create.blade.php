@@ -3,333 +3,323 @@
 @section('title', 'Add Product')
 
 @section('content')
-<div class="card">
-    <h5 class="card-header pb-0 text-md-start text-center">
-        Add Product
-    </h5>
-    <div class="card-body mt-4">
-        <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="row">
-                <!-- Product Name -->
-                <div class="col-md-4 mb-3">
-                    <label class="col-form-label text-md-end" for="product_name">Product Name*</label>
-                    <input type="text" name="product_name" id="product_name" class="form-control" required>
-                </div>
-                
-                <!-- Tally Code -->
-                <div class="col-md-4 mb-3">
-                    <label class="col-form-label text-md-end" for="tally_code">Tally Code*</label>
-                    <input type="text" name="tally_code" id="tally_code" class="form-control" required>
-                </div>
-                
-                <!-- File Number -->
-                <div class="col-md-4 mb-3">
-                    <label class="col-form-label text-md-end" for="file_number">File Number*</label>
-                    <input type="text" name="file_number" id="file_number" class="form-control" required>
-                </div>
-            </div>
-            <div class="row">
-                <!-- Supplier Name -->
-                <div class="col-md-4 mb-3">
-                    <label class="col-form-label text-md-end" for="supplier_name">Supplier Name*</label>
-                    <input type="text" name="supplier_name" id="supplier_name" class="form-control" required>
-                </div>
-                
-                <!-- Supplier Collection -->
-                <div class="col-md-4 mb-3">
-                    <label class="col-form-label text-md-end" for="supplier_collection">Supplier Collection*</label>
-                    <input type="text" name="supplier_collection" id="supplier_collection" class="form-control" required>
-                </div>
-                
-                <!-- Supplier Collection Design -->
-                <div class="col-md-4 mb-3">
-                    <label class="col-form-label text-md-end" for="supplier_collection_design">Supplier Collection Design*</label>
-                    <input type="text" name="supplier_collection_design" id="supplier_collection_design" class="form-control" required>
-                </div>
-            </div>
-            <div class="row">
-                <!-- Design SKU -->
-                <div class="col-md-4 mb-3">
-                    <label class="col-form-label text-md-end" for="design_sku">Design SKU*</label>
-                    <input type="text" name="design_sku" id="design_sku" class="form-control" required>
-                </div>
-                
-                <!-- Width (INCH) -->
-                <div class="col-md-4 mb-3">
-                    <label class="col-form-label text-md-end" for="width">Width (INCH)</label>
-                    <input type="number" name="width" id="width" class="form-control">
-                </div>
-                
-                <!-- Rubs / Martendale -->
-                <div class="col-md-4 mb-3">
-                    <label class="col-form-label text-md-end" for="rubs">Rubs / Martendale</label>
-                    <input type="text" name="rubs" id="rubs" class="form-control">
-                </div>
-            </div>
-            <div class="row">
-                <!-- Note -->
-                <div class="col-md-4 mb-3">
-                    <label class="col-form-label text-md-end" for="note">Note</label>
-                    <textarea name="note" id="note" class="form-control"></textarea>
-                </div>
-                
-                <!-- Supplier Price -->
-                <div class="col-md-4 mb-3">
-                    <label class="col-form-label text-md-end" for="supplier_price">Supplier Price</label>
-                    <input type="number" name="supplier_price" id="supplier_price" class="form-control">
-                </div>
-                
-                <!-- Freight -->
-                <div class="col-md-4 mb-3">
-                    <label class="col-form-label text-md-end" for="freight">Freight</label>
-                    <input type="number" name="freight" id="freight" class="form-control">
-                </div>
-            </div>
-            <div class="row">
-                <!-- Duty (%) -->
-                <div class="col-md-4 mb-3">
-                    <label class="col-form-label text-md-end" for="duty">Duty (%)</label>
-                    <input type="number" name="duty" id="duty" class="form-control" step="0.01">
-                </div>
-                
-                <!-- Profit (%) -->
-                <div class="col-md-4 mb-3">
-                    <label class="col-form-label text-md-end" for="profit">Profit (%)</label>
-                    <input type="number" name="profit" id="profit" class="form-control" step="0.01">
-                </div>
-                
-                <!-- GST (%) -->
-                <div class="col-md-4 mb-3">
-                    <label class="col-form-label text-md-end" for="gst">GST (%)</label>
-                    <input type="number" name="gst" id="gst" class="form-control" step="0.01">
-                </div>
-            </div>
-            <div class="row">
-                <!-- MRP -->
-                <div class="col-md-4 mb-3">
-                    <label class="col-form-label text-md-end" for="mrp">MRP</label>
-                    <input type="number" name="mrp" id="mrp" class="form-control">
-                </div>
-                
-                <!-- Unit -->
-                <div class="col-md-4 mb-3">
-                    <label class="col-form-label text-md-end" for="unit">Unit</label>
-                    <input type="text" name="unit" id="unit" class="form-control">
-                </div>
+<div class="dataOverviewSection mt-3">
+    <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data" class="mt-3" id="productForm">
+       
+            @csrf 
+               <div class="dataOverview mt-3">
+                    <h6 class="m-0">Add New Product</h6>
+                    <hr class="m-0 mt-2 mb-2">
             
-                <!-- Color -->
-                <div class="col-md-4 mb-3">
-                    <label class="col-form-label text-md-end" for="color">Color*</label>
-                    <select name="color[]" id="color" class="form-select select2" multiple>
-                        <option value="Red">Red</option>
-                        <option value="Blue">Blue</option>
-                        <option value="Green">Green</option>
-                        <!-- Add more colors dynamically -->
-                    </select>
-                </div>
-                
-                <!-- Composition -->
-                <div class="col-md-4 mb-3">
-                    <label class="col-form-label text-md-end" for="composition">Composition*</label>
-                    <select name="composition[]" id="composition" class="form-select select2" multiple>
-                        <option value="Cotton">Cotton</option>
-                        <option value="Wool">Wool</option>
-                        <!-- Add more compositions dynamically -->
-                    </select>
-                </div>
-                
-                <!-- Design Type -->
-                <div class="col-md-4 mb-3">
-                    <label class="col-form-label text-md-end" for="design_type">Design Type*</label>
-                    <select name="design_type[]" id="design_type" class="form-select select2" multiple>
-                        <option value="Floral">Floral</option>
-                        <option value="Geometric">Geometric</option>
-                        <!-- Add more design types dynamically -->
-                    </select>
-                </div>
+                    @csrf 
+                    <div class="row mb-2">
+                        <div class="col-md-4">
+                            <div class="mb-1 w-100">
+                                <label for="tally_code" class="form-label mb-1">Product Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control w-100" id="product_name" name="product_name" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-1 w-100">
+                                <label for="tally_code" class="form-label mb-1">Tally Code <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control w-100" id="tally_code" name="tally_code" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-1 w-100">
+                                <label for="file_number" class="form-label mb-1">File Number <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control w-100" id="file_number" name="file_number" required>
+                            </div>
+                        </div>
+                    </div>
             
-                <!-- Usage -->
-                <div class="col-md-4 mb-3">
-                    <label class="col-form-label text-md-end" for="usage">Usage*</label>
-                    <select name="usage[]" id="usage" class="form-select select2" multiple>
-                        <option value="Indoor">Indoor</option>
-                        <option value="Outdoor">Outdoor</option>
-                        <!-- Add more usage types dynamically -->
-                    </select>
-                </div>
-                <div class="col-md-12 mb-3">
-                    <label for="product_images" class="form-label">Product Images (Gallery)</label>
-                    <!-- Dropzone Container -->
-                    <div id="product_images" class="dropzone"></div>
-                    @error('product_images')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Add Product</button>
-        </form>
-    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-4">
+                            <label for="supplier_name" class="form-label m-0 mb-1">Supplier Name <span class="text-danger">*</span></label>
+                            <select name="supplier_name" id="supplier_name" class="form-select w-100" required>
+                                <option value="" selected>Select</option>
+                                <option value="1">Blinds</option>
+                                <option value="2">Carpet Tiles</option>
+                                <option value="3">Wood Flooring</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="supplier_collection" class="form-label m-0 mb-1">Supplier Collection <span class="text-danger">*</span></label>
+                            <select name="supplier_collection" id="supplier_collection" class="form-select w-100" required>
+                                <option value="" selected>Select</option>
+                                <option value="1">Blinds</option>
+                                <option value="2">Carpet Tiles</option>
+                                <option value="3">Wood Flooring</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="supplier_collection_design" class="form-label m-0 mb-1">Supplier Collection Design <span class="text-danger">*</span></label>
+                            <select name="supplier_collection_design" id="supplier_collection_design" class="form-select w-100" required>
+                                <option value="" selected>Select</option>
+                                <option value="1">Blinds</option>
+                                <option value="2">Carpet Tiles</option>
+                                <option value="3">Wood Flooring</option>
+                            </select>
+                        </div>
+                    </div>
+            
+                    <div class="row mb-2">
+                        <div class="col-md-4">
+                            <div class="mb-1 w-100">
+                                <label for="design_sku" class="form-label mb-1">Design Sku <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control w-100" id="design_sku" name="design_sku" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-1 w-100">
+                                <label for="rubs_martendale" class="form-label mb-1">Rubs/Martendale <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control w-100" id="rubs_martendale" name="rubs_martendale" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-1 w-100">
+                                <label for="width" class="form-label mb-1">Width <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control w-100" id="width" name="width" required>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="mb-2 w-100 d-flex justify-content-start">
+                        <img src="{{ asset('admin/images/image.jpg') }}" class="rounded" id="imagePreview" alt="" width="140" height="140">
+                        <div class="w-100 ms-3">
+                            <div>
+                                <label for="image" class="form-label mb-1">Image <span class="text-danger">*</span></label>
+                                <input type="file" class="form-control w-100" id="image" name="image" onchange="previewImage(event)" required>
+                            </div>
+                            <div>
+                                <label for="image_alt" class="form-label mb-1">Image Alt <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control w-100" id="image_alt" name="image_alt" required>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="row mb-2">
+                        <div class="col-md-4">
+                            <label for="colour" class="form-label m-0 mb-1">Colour</label>
+                            <div class="selectMultiple">
+                                <div>
+                                    <span>Select</span>
+                                    <div class="arrow"></div>
+                                </div>
+                                <ul>
+                                    <div class="dropdown-search"><input type="text" class="search-input" placeholder="Search..."></div>
+                                    <li><input type="checkbox" id="colour1" name="colour[]" value="Beige & brown"> Beige & brown</li>
+                                    <li><input type="checkbox" id="colour2" name="colour[]" value="Blue"> Blue</li>
+                                    <li><input type="checkbox" id="colour3" name="colour[]" value="Green"> Green</li>
+                                    <li><input type="checkbox" id="colour4" name="colour[]" value="Grey & Black"> Grey & Black</li>
+                                    <li><input type="checkbox" id="colour5" name="colour[]" value="Metallics"> Metallics</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="composition" class="form-label m-0 mb-1">Composition</label>
+                            <div class="selectMultiple">
+                                <div>
+                                    <span>Select</span>
+                                    <div class="arrow"></div>
+                                </div>
+                                <ul>
+                                    <div class="dropdown-search"><input type="text" class="search-input" placeholder="Search..."></div>
+                                    <li><input type="checkbox" id="composition1" name="composition[]" value="Cotton Blend"> Cotton Blend</li>
+                                    <li><input type="checkbox" id="composition2" name="composition[]" value="Silk blend"> Silk blend</li>
+                                    <li><input type="checkbox" id="composition3" name="composition[]" value="Suede"> Suede</li>
+                                    <li><input type="checkbox" id="composition4" name="composition[]" value="Linen blend"> Linen blend</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label m-0 mb-1" for="type">Type <span class="text-danger">*</span></label>
+                            <select name="type" id="type" class="form-select w-100" required>
+                                <option value="opt1">Select</option>
+                                <option value="opt2">Blinds</option>
+                                <option value="opt3">Carpet Tiles</option>
+                                <option value="opt4">Wood Flooring</option>
+                            </select>
+                        </div>
+                    </div>
+            
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <label for="usage" class="form-label m-0 mb-1">Usage</label>
+                            <div class="selectMultiple">
+                                <div>
+                                    <span>Select</span>
+                                    <div class="arrow"></div>
+                                </div>
+                                <ul>
+                                    <div class="dropdown-search"><input type="text" class="search-input" id="usageSearch" name="usageSearch" placeholder="Search..."></div>
+                                    <li><input type="checkbox" id="usage1" name="usage[]" value="Bedding"> Bedding</li>
+                                    <li><input type="checkbox" id="usage2" name="usage[]" value="Blinds"> Blinds</li>
+                                    <li><input type="checkbox" id="usage3" name="usage[]" value="Cushion"> Cushion</li>
+                                    <li><input type="checkbox" id="usage4" name="usage[]" value="Headboard"> Headboard</li>
+                                </ul>
+                            </div>
+                        </div>
+                    
+                        <div class="col-md-6">
+                            <label for="designType" class="form-label m-0 mb-1">Design Type</label>
+                            <div class="selectMultiple">
+                                <div>
+                                    <span>Select</span>
+                                    <div class="arrow"></div>
+                                </div>
+                                <ul>
+                                    <div class="dropdown-search"><input type="text" class="search-input" id="designTypeOtherSearch" name="designTypeOtherSearch" placeholder="Search..."></div>
+                                    <li><input type="checkbox" id="designTypeFR" name="designTypeOther[]" value="FR"> FR</li>
+                                    <li><input type="checkbox" id="designTypeOutdoor" name="designTypeOther[]" value="Outdoor"> Outdoor</li>
+                                    <li><input type="checkbox" id="designTypePetProof" name="designTypeOther[]" value="Pet proof"> Pet proof</li>
+                                    <li><input type="checkbox" id="designTypeStainResistant" name="designTypeOther[]" value="Stain resistant"> Stain resistant</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12">
+                            <label for="noteInput" class="form-label mb-1">Note <span class="text-danger">*</span></label>
+                            <textarea name="note" id="noteInput" cols="30" rows="10" class="form-control w-100" required></textarea>
+                        </div>
+                    </div>
+                
+                    <hr class="m-0 mt-4 mb-2">
+                
+                    <div class="row mb-2">
+                        <div class="col-md-3">
+                            <label class="form-label m-0 mb-1" for="currency">Currency</label>
+                            <select name="currency" id="currency" class="form-select w-100" aria-label="Currency select">
+                                <option value="rupee" selected>₹ (Rupee)</option>
+                                <option value="dollar">$ (US Dollar)</option>
+                                <option value="euro">€ (Euro)</option>
+                            </select>
+                        </div>
+                
+                        <div class="col-md-3">
+                            <div class="mb-1 w-100">
+                                <label for="supplierPriceInput" class="form-label mb-1">Supplier Price</label>
+                                <input type="text" class="form-control w-100" id="supplierPriceInput" name="supplier_price">
+                            </div>
+                        </div>
+                
+                        <div class="col-md-3">
+                            <div class="mb-1 w-100">
+                                <label for="freightInput" class="form-label mb-1">Freight</label>
+                                <input type="text" class="form-control w-100" id="freightInput" name="freight">
+                            </div>
+                        </div>
+                
+                        <div class="col-md-3">
+                            <div class="mb-1 w-100">
+                                <label for="dutyInput" class="form-label mb-1">Duty %</label>
+                                <input type="text" class="form-control w-100" id="dutyInput" name="duty_percentage">
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="row mb-2">
+                        <div class="col-md-3">
+                            <div class="mb-1 w-100">
+                                <label for="profitInput" class="form-label mb-1">Profit %</label>
+                                <input type="text" class="form-control w-100" id="profitInput" name="profit_percentage">
+                            </div>
+                        </div>
+                
+                        <div class="col-md-3">
+                            <div class="mb-1 w-100">
+                                <label for="gstInput" class="form-label mb-1">GST %</label>
+                                <input type="text" class="form-control w-100" id="gstInput" name="gst_percentage">
+                            </div>
+                        </div>
+                
+                        <div class="col-md-3">
+                            <div class="mb-1 w-100">
+                                <label for="mrpInput" class="form-label mb-1">MRP</label>
+                                <input type="text" class="form-control w-100" id="mrpInput" name="mrp">
+                            </div>
+                        </div>
+                
+                        <div class="col-md-3">
+                            <div class="mb-1 w-100">
+                                <label for="unitInput" class="form-label mb-1">Unit</label>
+                                <input type="text" class="form-control w-100" id="unitInput" name="unit">
+                            </div>
+                        </div>
+                    </div>
+        </div>
+    
+        <div class="mt-3 d-flex gap-3 mb-4">
+            <button type="submit" class="btn primary-btn">Create Product</button>
+            <button type="reset" class="btn secondary-btn">Cancel</button>
+        </div>
+    </form>
 </div>
+
 @endsection
 
 @section('script')
 <script>
-   document.addEventListener("DOMContentLoaded", function() {
-    let productForm = document.querySelector("#productForm"); // Change ID to match your form
+    // Image Preview
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function(){
+            var output = document.getElementById('imagePreview');
+            output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
 
-    if (productForm) {
-        FormValidation.formValidation(productForm, {
-            fields: {
-                'product_name': {
-                    validators: {
-                        notEmpty: { message: "Product name is required" },
-                        stringLength: { min: 3, message: "Product name must be at least 3 characters long" }
-                    }
-                },
-                'tally_code': {
-                    validators: {
-                        notEmpty: { message: "Tally code is required" }
-                    }
-                },
-                'file_number': {
-                    validators: {
-                        notEmpty: { message: "File number is required" }
-                    }
-                },
-                'supplier_name': {
-                    validators: {
-                        notEmpty: { message: "Supplier name is required" }
-                    }
-                },
-                'supplier_collection': {
-                    validators: {
-                        notEmpty: { message: "Supplier collection is required" }
-                    }
-                },
-                'supplier_collection_design': {
-                    validators: {
-                        notEmpty: { message: "Supplier collection design is required" }
-                    }
-                },
-                'design_sku': {
-                    validators: {
-                        notEmpty: { message: "Design SKU is required" }
-                    }
-                },
-                'width': {
-                    validators: {
-                        numeric: { message: "Width must be a number" }
-                    }
-                },
-                'duty': {
-                    validators: {
-                        numeric: { message: "Duty must be a valid percentage" },
-                        between: { min: 0, max: 100, message: "Duty must be between 0% and 100%" }
-                    }
-                },
-                'profit': {
-                    validators: {
-                        numeric: { message: "Profit must be a valid percentage" },
-                        between: { min: 0, max: 100, message: "Profit must be between 0% and 100%" }
-                    }
-                },
-                'gst': {
-                    validators: {
-                        numeric: { message: "GST must be a valid percentage" },
-                        between: { min: 0, max: 100, message: "GST must be between 0% and 100%" }
-                    }
-                },
-                'color[]': {
-                    validators: {
-                        notEmpty: { message: "Please select at least one color" }
-                    }
-                },
-                'composition[]': {
-                    validators: {
-                        notEmpty: { message: "Please select at least one composition" }
-                    }
-                },
-                'design_type[]': {
-                    validators: {
-                        notEmpty: { message: "Please select at least one design type" }
-                    }
-                },
-                'usage[]': {
-                    validators: {
-                        notEmpty: { message: "Please select at least one usage" }
-                    }
-                }
+    // jQuery Validation
+    $(document).ready(function(){
+        $('#productForm').validate({
+            rules: {
+                type: { required: true },
+                tally_code: { required: true },
+                file_number: { required: true },
+                supplier_name: { required: true },
+                supplier_collection: { required: true },
+                supplier_collection_design: { required: true },
+                design_sku: { required: true },
+                rubs_martendale: { required: true },
+                width: { required: true },
+                image: { required: true },
+                image_alt: { required: true },
+                note: { required: true },
+                // Add rules for other fields as needed
             },
-            plugins: {
-                trigger: new FormValidation.plugins.Trigger(),
-                bootstrap5: new FormValidation.plugins.Bootstrap5({
-                    eleValidClass: "",
-                    rowSelector: ".mb-3"
-                }),
-                submitButton: new FormValidation.plugins.SubmitButton(),
-                defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
-                autoFocus: new FormValidation.plugins.AutoFocus()
+            messages: {
+                type: { required: "Please select a type." },
+                tally_code: { required: "Please enter the tally code." },
+                file_number: { required: "Please enter the file number." },
+                supplier_name: { required: "Please select a supplier." },
+                supplier_collection: { required: "Please select a supplier collection." },
+                supplier_collection_design: { required: "Please select a supplier collection design." },
+                design_sku: { required: "Please enter a design SKU." },
+                rubs_martendale: { required: "Please enter rubs/martendale." },
+                width: { required: "Please enter the width." },
+                image: { required: "Please upload an image." },
+                image_alt: { required: "Please enter an image alt text." },
+                note: { required: "Please enter a note." }
             },
-            init: e => {
-                e.on("plugins.message.placed", function(e) {
-                    if (e.element.parentElement.classList.contains("input-group")) {
-                        e.element.parentElement.insertAdjacentElement("afterend", e.messageElement);
-                    }
-                });
+            errorElement: "div", // Use div to display errors
+            errorPlacement: function (error, element) {
+                error.addClass("form-text text-danger xsmall");
+                error.insertAfter(element); // Place the error directly after the input element
+            },
+            highlight: function (element) {
+                $(element).addClass("is-invalid").removeClass("is-valid");
+            },
+            unhighlight: function (element) {
+                $(element).removeClass("is-invalid").addClass("is-valid");
+            },
+            submitHandler: function(form) {
+                form.submit();
             }
         });
-    }
-});
-
-</script>
-
-<script>
-    $(document).ready(function(){
-        $(".select2").select2();
     });
 </script>
-<script>
-    // Initialize Dropzone.js
-    Dropzone.options.productImages = {
-    url: "{{ route('products.store') }}", // Form action URL
-    method: 'POST', // Form submission method
-    paramName: 'product_images[]', // Name attribute for file input
-    addRemoveLinks: true, // Enable image removal
-    dictDefaultMessage: 'Drag & Drop images here or click to select files.',
-    maxFilesize: 2, // Maximum file size in MB
-    acceptedFiles: 'image/*', // Accepted image file types
-    parallelUploads: 10, // Allow multiple uploads
-    autoProcessQueue: false, // Disable auto upload on file drop
-    init: function () {
-        var myDropzone = this;
 
-        // Trigger the manual upload when the submit button is clicked
-        $('#submitForm').on('click', function (e) {
-            e.preventDefault(); // Prevent default form submission
-
-            // Manually process the files
-            myDropzone.processQueue();
-        });
-
-        // On success, handle the response and display images
-        this.on("successmultiple", function (files, response) {
-            if (response && response.success) {
-                // Handle successful upload, you can display the images as needed
-                files.forEach(function (file) {
-                    file.previewElement.querySelector("img").src = "{{ asset('storage') }}/" + response.filePath;
-                });
-            }
-        });
-
-        // Handle errors
-        this.on("error", function (file, errorMessage) {
-            alert("Error: " + errorMessage);
-        });
-    }
-};
-
-</script>
 @endsection
 

@@ -29,8 +29,18 @@ class AppointmentSuccessMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Appointment Request Received Successfully')
-                    ->view('emails.appointment_success')
-                    ->with('appointment', $this->appointment);
+        $appointment=$this->appointment;
+        if($appointment->appointment_date){
+            return $this->subject('Appointment Schduled Successfully')
+            ->view('emails.appointment_success')
+            ->with('appointment', $this->appointment);
+        }
+        else{
+            return $this->subject('Appointment Request Received Successfully')
+            ->view('emails.appointment_success')
+            ->with('appointment', $this->appointment);
+        }
+
+        
     }
 }

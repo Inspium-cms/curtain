@@ -3,142 +3,456 @@
 @section('title', 'Franchise Temp List')
 
 @section('content')
-<style>
-  table>thead{
-    background: #6a6cff;
-  }
-  table > thead > tr > th{
-    color: #ffffff !important;
-  }
-</style>
-    <div class="card">
-        <h5 class="card-header pb-0 text-md-start text-center">
-            Franchise  List
-        </h5>
-        <div class="nav-align-top nav-tabs-shadow mb-6">
-          <ul class="nav nav-tabs nav-fill" role="tablist">
-            <li class="nav-item" role="presentation">
-              <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-justified-home" aria-controls="navs-justified-home" aria-selected="true"><span class="d-none d-sm-block"><i class="tf-icons bx bx-loader bx-sm me-1_5 align-text-bottom"></i> Pending List <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-label-danger ms-1_5 pt-50">3</span></span><i class="bx bx-home bx-sm d-sm-none"></i></button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-justified-profile" aria-controls="navs-justified-profile" aria-selected="false" tabindex="-1"><span class="d-none d-sm-block"><i class="tf-icons bx bxs-user-check bx-sm me-1_5 align-text-bottom"></i> Approved List</span><i class="bx bx-user bx-sm d-sm-none"></i></button>
-            </li>
-          </ul>
-          <div class="tab-content">
-            <div class="tab-pane fade active show" id="navs-justified-home" role="tabpanel">
-              <div class="card-datatable table-responsive">
-                <table class="dt-responsive table border-top">
-                    <thead>
-                        <tr>
-                            
-                            <th>Company Name</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Mobile</th>
-                            <th>Address</th>
-                            <th>Pincode</th>
-                            <th>City</th>
-                            <th>State</th>
-                            <th>Country</th>
-                            <th>Approve</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($franchiseTemps as $franchise)
+<div class="dataOverviewSection mt-3">
+    <div class="section-title">
+        <h6 class="fw-bold m-0">All Franchise <span class="fw-normal text-muted">({{ count($franchiseTemps)+count($franchises) }})</span></h6>
+        <a href="#" class="primary-btn addBtn" data-bs-toggle="modal" data-bs-target="#addFranchiseModal1">+ Add
+            Franchise</a>
+    </div>
+
+    <div class="dataOverview mt-3">
+        <div>
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="pills-confirm-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-confirm" type="button" role="tab"
+                        aria-controls="pills-confirm" aria-selected="true">Pending <span
+                            class="fw-normal small">({{ count($franchiseTemps) }})</span></button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-pending-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-pending" type="button" role="tab"
+                        aria-controls="pills-pending" aria-selected="false">Confirmed <span
+                            class="fw-normal small">({{ count($franchises) }})</span></button>
+                </li>
+                {{-- <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-rejected-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-rejected" type="button" role="tab"
+                        aria-controls="pills-rejected" aria-selected="false">Rejected <span
+                            class="fw-normal small">(5)</span></button>
+                </li> --}}
+
+            </ul>
+        </div>
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-confirm" role="tabpanel"
+                aria-labelledby="pills-confirm-tab" tabindex="0">
+                <div class="table-responsive">
+                    <table class="table" id="projectsTable">
+                            <thead>
+                                <tr>
+                                    <th>S/N</th>
+                                    <th>Company Name</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Mobile</th>
+                                    <th>Address</th>
+                                    <th>Pincode</th>
+                                    <th>City</th>
+                                    <th>State</th>
+                                    <th>Country</th>
+                                    <th>Approve</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($franchiseTemps as $idx=>$franchise)
+                                    <tr>
+                                        <td>{{ $idx+1 }}</td>
+                                        <td>{{ $franchise->company_name }}</td>
+                                        <td>{{ $franchise->name }}</td>
+                                        <td>{{ $franchise->email }}</td>
+                                        <td>{{ $franchise->mobile }}</td>
+                                        <td>{{ $franchise->address }}</td>
+                                        <td>{{ $franchise->pincode }}</td>
+                                        <td>{{ $franchise->city }}</td>
+                                        <td>{{ $franchise->state }}</td>
+                                        <td>{{ $franchise->country }}</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <i class="bi bi-three-dots-vertical" type="button"
+                                                    data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                                <ul class="dropdown-menu">
+                                                    {{-- <li><a class="dropdown-item small" href="#">View</a></li> --}}
+                                                    <li>
+                                                        <a href="javascript:" class="dropdown-item small approve-franchise-btn" data-franchise-id="{{ $franchise->id }}">Approve Franchise</a>
+                                                    </li>
+                                                    {{-- <li><a class="dropdown-item small" href="#"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#deleteModal">Reject</a></li> --}}
+                                                </ul>
+                                            </div>
+                                             
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="pills-pending" role="tabpanel"
+                aria-labelledby="pills-pending-tab" tabindex="0">
+                <div class="table-responsive">
+                    <table class="table" id="pendingFranchise">
+                        <thead>
                             <tr>
                                 
-                                <td>{{ $franchise->company_name }}</td>
-                                <td>{{ $franchise->name }}</td>
-                                <td>{{ $franchise->email }}</td>
-                                <td>{{ $franchise->mobile }}</td>
-                                <td>{{ $franchise->address }}</td>
-                                <td>{{ $franchise->pincode }}</td>
-                                <td>{{ $franchise->city }}</td>
-                                <td>{{ $franchise->state }}</td>
-                                <td>{{ $franchise->country }}</td>
+                                <th>Company Name</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Mobile</th>
+                                <th>Address</th>
+                                <th>Pincode</th>
+                                <th>City</th>
+                                <th>State</th>
+                                <th>Country</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($franchises as $franchise)
+                                <tr>
+                                    
+                                    <td>{{ $franchise->company_name }}</td>
+                                    <td>{{ $franchise->user->name }}</td>
+                                    <td>{{ $franchise->user->email }}</td>
+                                    <td>{{ $franchise->mobile }}</td>
+                                    <td>{{ $franchise->address }}</td>
+                                    <td>{{ $franchise->pincode }}</td>
+                                    <td>{{ $franchise->city }}</td>
+                                    <td>{{ $franchise->state }}</td>
+                                    <td>{{ $franchise->country }}</td>
+                               
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-rejected" role="tabpanel"
+                aria-labelledby="pills-rejected-tab" tabindex="0">
+                <div class="table-responsive">
+                    <table class="table" id="projectsTable">
+                        <thead>
+                            <tr>
+                                <th style="border-top-left-radius: 6px; border-bottom-left-radius: 6px;"
+                                    scope="col">S/N</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Individual/Company</th>
+                                <th scope="col">Company Name</th>
+                                <th scope="col">Number</th>
+                                <th scope="col">Pincode</th>
+                                <th scope="col">City</th>
+                                <th scope="col">Status</th>
+                                <th style="border-top-right-radius: 6px; border-bottom-right-radius: 6px;"
+                                    scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td>01</td>
+                                <td>Ramesh Kumar</td>
+                                <td>Campany</td>
+                                <td>abc pvt ltd</td>
+                                <td>+91 9876543211</td>
+                                <td>110059</td>
+                                <td>New Delhi</td>
+                                <td><span class="badge badge-inactive">Rejected</span></td>
                                 <td>
-                                  <a href="javascript:void(0);" 
-                                  class="btn rounded-pill btn-icon btn-success" 
-                                      onclick="confirmApproval('{{ route('franchise.approve', $franchise->id) }}')">
-                                      <i class='bx bxs-user-check'></i>
-                                  </a>    
+                                    <div class="dropdown">
+                                        <i class="bi bi-three-dots-vertical" type="button"
+                                            data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item small" href="#">View</a></li>
+                                            <li><a class="dropdown-item small" href="#">Confirm</a>
+                                            </li>
+                                            <li><a class="dropdown-item small" href="#"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#deleteModal">Reject</a></li>
+                                        </ul>
+                                    </div>
                                 </td>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-            </div>
-            <div class="tab-pane fade" id="navs-justified-profile" role="tabpanel">
-              <div class="card-datatable table-responsive">
-                <table class="dt-responsive1 table border-top">
-                    <thead>
-                        <tr>
-                            
-                            <th>Company Name</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Mobile</th>
-                            <th>Address</th>
-                            <th>Pincode</th>
-                            <th>City</th>
-                            <th>State</th>
-                            <th>Country</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($franchises as $franchise)
                             <tr>
-                                
-                                <td>{{ $franchise->company_name }}</td>
-                                <td>{{ $franchise->user->name }}</td>
-                                <td>{{ $franchise->user->email }}</td>
-                                <td>{{ $franchise->mobile }}</td>
-                                <td>{{ $franchise->address }}</td>
-                                <td>{{ $franchise->pincode }}</td>
-                                <td>{{ $franchise->city }}</td>
-                                <td>{{ $franchise->state }}</td>
-                                <td>{{ $franchise->country }}</td>
-                           
+                                <td>01</td>
+                                <td>Ramesh Kumar</td>
+                                <td>Campany</td>
+                                <td>abc pvt ltd</td>
+                                <td>+91 9876543211</td>
+                                <td>110059</td>
+                                <td>New Delhi</td>
+                                <td><span class="badge badge-inactive">Rejected</span></td>
+                                <td>
+                                    <div class="dropdown">
+                                        <i class="bi bi-three-dots-vertical" type="button"
+                                            data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item small" href="#">View</a></li>
+                                            <li><a class="dropdown-item small" href="#">Confirm</a>
+                                            </li>
+                                            <li><a class="dropdown-item small" href="#"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#deleteModal">Reject</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                            <tr>
+                                <td>01</td>
+                                <td>Ramesh Kumar</td>
+                                <td>Campany</td>
+                                <td>abc pvt ltd</td>
+                                <td>+91 9876543211</td>
+                                <td>110059</td>
+                                <td>New Delhi</td>
+                                <td><span class="badge badge-inactive">Rejected</span></td>
+                                <td>
+                                    <div class="dropdown">
+                                        <i class="bi bi-three-dots-vertical" type="button"
+                                            data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item small" href="#">View</a></li>
+                                            <li><a class="dropdown-item small" href="#">Confirm</a>
+                                            </li>
+                                            <li><a class="dropdown-item small" href="#"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#deleteModal">Reject</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>01</td>
+                                <td>Ramesh Kumar</td>
+                                <td>Campany</td>
+                                <td>abc pvt ltd</td>
+                                <td>+91 9876543211</td>
+                                <td>110059</td>
+                                <td>New Delhi</td>
+                                <td><span class="badge badge-inactive">Rejected</span></td>
+                                <td>
+                                    <div class="dropdown">
+                                        <i class="bi bi-three-dots-vertical" type="button"
+                                            data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item small" href="#">View</a></li>
+                                            <li><a class="dropdown-item small" href="#">Confirm</a>
+                                            </li>
+                                            <li><a class="dropdown-item small" href="#"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#deleteModal">Reject</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>01</td>
+                                <td>Ramesh Kumar</td>
+                                <td>Campany</td>
+                                <td>abc pvt ltd</td>
+                                <td>+91 9876543211</td>
+                                <td>110059</td>
+                                <td>New Delhi</td>
+                                <td><span class="badge badge-inactive">Rejected</span></td>
+                                <td>
+                                    <div class="dropdown">
+                                        <i class="bi bi-three-dots-vertical" type="button"
+                                            data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item small" href="#">View</a></li>
+                                            <li><a class="dropdown-item small" href="#">Confirm</a>
+                                            </li>
+                                            <li><a class="dropdown-item small" href="#"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#deleteModal">Reject</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            </div>
-          </div>
         </div>
-        
     </div>
+</div>
+<!-- Approval Modal -->
+<div class="modal fade" id="approveFranchiseModal" tabindex="-1" aria-labelledby="approveFranchiseModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form id="approveFranchiseForm" method="POST" action="{{ route('franchise.approve', ['id' => '__franchise_id__']) }}" autocomplete="off">
+                @csrf
+                @method('PUT')
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="approveFranchiseModalLabel">Approve Franchise</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to approve this franchise?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="secondary-btn" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="primary-btn">Approve</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Add Franchise Modal Start -->
+<div class="modal fade" id="addFranchiseModal1" tabindex="-1" aria-labelledby="addFranchiseModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5">Add Franchise</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="{{ route('franchise_temp.store_admin') }}" method="POST" id="contact-form1">
+            @csrf
+        <div class="modal-body">
+            
+                <div class="mb-3 w-100">
+                    <label for="NameInput" class="form-label mb-1">Name<span class="requried">*</span></label>
+                    <input type="text" class="form-control w-100" id="name" name="name">
+                </div>
+                <div class="mb-3 w-100">
+                    <label for="UserEmailInput" class="form-label mb-1">Email ID<span class="requried">*</span></label>
+                    <input type="email" class="form-control w-100" id="email" name="email">
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3 w-100">
+                            <label for="contactNumberInput" class="form-label mb-1">Contact Number<span class="requried">*</span></label>
+                            <input type="number" class="form-control w-100" id="mobile" name="mobile">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3 w-100">
+                            <label for="altcontactNumberInput" class="form-label mb-1">Alternate Contact
+                                Number</label>
+                            <input type="number" class="form-control w-100" id="alt_mobile" name="alt_mobile">
+                        </div>
+                    </div>
+                </div>
+                {{-- <div class="mb-3 w-100">
+                    <label for="registrationTypeInput" class="form-label mb-1">Registration Type</label>
+                    <select class="form-select w-100" id="registrationTypeInput"
+                        aria-label="Default select example" onchange="toggleCompanyFields()">
+                        <option selected>Open this select menu</option>
+                        <option value="individual">Individual</option>
+                        <option value="proprietor">Proprietor</option>
+                        <option value="company">Company</option>
+                    </select>
+                </div> --}}
+                <div class="row" id="companyFields" >
+                    <div class="col-md-6">
+                        <div class="mb-3 w-100">
+                            <label for="companyNameInput" class="form-label mb-1">Company Name<span class="requried">*</span></label>
+                            <input type="text" class="form-control w-100" id="company_name" name="company_name">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3 w-100">
+                            <label for="numberOfEmployeeInput" class="form-label mb-1">Number of
+                                Employee<span class="requried">*</span></label>
+                            <input type="number" class="form-control w-100" id="employees" name="employees">
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 w-100">
+                    <label for="franchiseAddress" class="form-label mb-1">Address<span class="requried">*</span></label>
+                    <textarea name="address" class="form-control w-100" id="address" name="address"
+                        style="height: 70px;"></textarea>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3 w-100">
+                            <label for="pincodeInput" class="form-label mb-1">Pincode<span class="requried">*</span></label>
+                            <input type="number" class="form-control w-100" id="pincode" name="pincode">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3 w-100">
+                            <label for="countryInput" class="form-label mb-1"> Country<span class="requried">*</span></label>
+                            <input type="text" class="form-control w-100" id="country" name="country">
+                                
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3 w-100">
+                            <label for="countryInput" class="form-label mb-1"> State<span class="requried">*</span></label>
+                            <input type="text" class="form-control w-100" id="state" name="state">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3 w-100">
+                            <label for="countryInput" class="form-label mb-1"> City<span class="requried">*</span></label>
+                            <input type="text" class="form-control w-100" id="city" name="city">
+                        </div>
+                    </div>
+                </div>
+            
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="secondary-btn addBtn" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="primary-btn addBtn">Save</button>
+        </div>
+    </form>
+    </div>
+</div>
+</div>
+<!-- Add Franchise Modal End -->
 @endsection
 
 @section('script')
 <script>
-  function confirmApproval(url) {
-      Swal.fire({
-          title: 'Are you sure?',
-          text: "Do you want to approve this franchise?",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, approve it!'
-      }).then((result) => {
-          if (result.isConfirmed) {
-              window.location.href = url;
-          }
-      });
-  }
-  @if(session('success'))
-        Swal.fire({
-            icon: 'success',
-            title: 'Success!',
-            text: "{{ session('success') }}",
-            confirmButtonColor: '#3085d6'
+    // $(document).ready(function() {
+        $('#pincode').on('blur', function() {
+            var pincode = $(this).val();
+            if (pincode) {
+                $.ajax({
+                    url: '/get-location',
+                    method: 'POST',
+                    data: {
+                        pincode: pincode,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        $('#country').val(response.country);
+                        $('#state').val(response.state);
+                        $('#city').val(response.city);
+                    },
+                    error: function() {
+                        alert('Location not found!');
+                    }
+                });
+            }
         });
-    @endif
+    // });
 </script>
+<script>
+    // Function to trigger the approval modal and set the franchise ID dynamically
+    function showApproveFranchiseModal(franchiseId) {
+        var form = document.getElementById('approveFranchiseForm');
+        var actionUrl = form.action.replace('__franchise_id__', franchiseId); // Replace the placeholder with the actual franchise ID
+        form.action = actionUrl; // Update the form action URL
 
+        // Show the modal
+        $('#approveFranchiseModal').modal('show');
+    }
+
+    // Trigger the modal when the approve button is clicked
+    $(document).on('click', '.approve-franchise-btn', function(e) {
+        e.preventDefault();
+        var franchiseId = $(this).data('franchise-id');  // Get the franchise ID from the button's data attribute
+        showApproveFranchiseModal(franchiseId);  // Trigger the modal
+    });
+</script>
     <script>
         $(document).ready(function(){
             $(".dt-responsive").dataTable({
@@ -157,4 +471,114 @@
             });
         });
     </script>
+    <script>
+        $('#addFranchiseModal1').on('shown.bs.modal', function () {
+            $("#contact-form1").validate({
+            rules: {
+                company_name: "required",
+                name: "required",
+                email: {
+                    required: true,
+                    email: true
+                },
+                mobile: {
+                    required: true,
+                    digits: true,
+                    minlength: 10,
+                    maxlength: 15
+                },
+                alt_mobile: {
+                    digits: true,
+                    minlength: 10,
+                    maxlength: 15
+                },
+                employees: {
+                    required: true,
+                    digits: true
+                },
+                address: "required",
+                pincode: {
+                    required: true,
+                    digits: true,
+                    minlength: 6,
+                    maxlength: 6
+                },
+                city: "required",
+                state: "required",
+                country: "required"
+            },
+            messages: {
+                company_name: "Please enter your company name",
+                name: "Please enter your name",
+                email: {
+                    required: "Please enter your email",
+                    email: "Please enter a valid email address"
+                },
+                mobile: {
+                    required: "Please enter your mobile number",
+                    digits: "Please enter a valid mobile number"
+                },
+                employees: "Please enter the number of employees",
+                address: "Please enter your address",
+                pincode: {
+                    required: "Please enter your pincode",
+                    digits: "Please enter a valid pincode"
+                },
+                city: "Please enter your city",
+                state: "Please enter your state",
+                country: "Please enter your country"
+            },
+            errorElement: "div", // Use div to display errors
+            errorPlacement: function (error, element) {
+                error.addClass("form-text text-danger xsmall");
+                error.insertAfter(element); // Place the error directly after the input element
+            },
+            highlight: function (element) {
+                $(element).addClass("is-invalid").removeClass("is-valid");
+            },
+            unhighlight: function (element) {
+                $(element).removeClass("is-invalid").addClass("is-valid");
+            }
+        });
+        });
+        </script>
+
+    <script>
+        var input = document.querySelector("#mobile");
+var iti = "";
+// store the instance variable so we can access it in the console e.g. window.iti.getNumber()
+window.iti = iti;
+        function saveData() {
+            const formData = {
+                company_name: $("#company_name").val(), // Match the name attribute in the input
+                name: $("#name").val(),
+                email: $("#email").val(),
+                mobile: $("#mobile").val(),
+                alt_mobile: $("#alt_mobile").val(),
+                employees: $("#employees").val(),
+                address: $("#address").val(),
+                pincode: $("#pincode").val(),
+                city: $("#city").val(),
+                state: $("#state").val(),
+                country: $("#country").val(),
+                _token: $("input[name='_token']").val(), // CSRF token
+            };
+        
+            $.ajax({
+                type: "POST",
+                url: "{{ route('franchise_temp.store_admin') }}", // Your server-side script to save data
+                data: formData,
+                success: function(response) {
+                    //alert('ddd');
+                    document.getElementById('contact-form1').style.display = 'none'; // Hide all form fields
+    document.getElementById('form-title1').style.display = 'none';
+    document.getElementById('thankYouMessage1').style.display = 'block'; // Show the thank you message
+                    $("#contact-form")[0].reset(); // Reset the form after successful submission
+                },
+                error: function(xhr, status, error) {
+                    alert("An error occurred while saving data: " + error);
+                }
+            });
+        }
+        </script>
 @endsection

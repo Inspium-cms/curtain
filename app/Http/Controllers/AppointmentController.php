@@ -17,7 +17,7 @@ class AppointmentController extends Controller
     $pendingAppointments = Appointment::where('status', 'Appointment Booked')->get();
     
     // Fetch appointments with status 'Assigned'
-    $assignedAppointments = Appointment::where('status', 'Franchise Assigned')->get();
+    $assignedAppointments = Appointment::join('franchises','appointments.franchise_id','=','franchises.id')->join('users','users.id','=','franchises.user_id')->select('appointments.*','users.name as franchise_name')->where('appointments.status', 'Franchise Assigned')->get();
     $franchises=Franchise::all();
     
     return view('admin.appointments', compact('pendingAppointments', 'assignedAppointments','franchises'));
@@ -52,9 +52,10 @@ class AppointmentController extends Controller
 
     $appointment = Appointment::findOrFail($request->appointment_id);
     $appointment->franchise_id = $request->franchise_id;
+    $appointment->appointment_date=$request->dateFilter;
     $appointment->status = 'Franchise Assigned';  // Update the status
     $appointment->save();
-
+    Mail::to($appointment->email)->send(new AppointmentSuccessMail($appointment));
     return redirect()->back()->with('success', 'Franchise assigned successfully.');
 }
 

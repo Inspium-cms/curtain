@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Role;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -93,7 +94,8 @@ class RegisterController extends Controller
         $this->create($request->all());
 
         // Redirect to a thank you page or wherever you prefer
-        return redirect()->route('user_create');
+        return back()->with('success', 'User has been added successfully!');
+
     }
 
     public function user_list(){
@@ -101,4 +103,111 @@ class RegisterController extends Controller
 
         return view('admin.user.index', compact('users'));
     }
+
+    /**
+     * Update user details
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateUser(Request $request, User $user)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|min:3|max:255',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'role' => 'required|string',
+        ]);
+
+        // Update user details
+        $user->update([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+        ]);
+
+        // Update role if changed
+        if ($user->hasRole($validated['role'])) {
+            // If the role hasn't changed, do nothing
+            return back()->with('success', 'User updated successfully.');
+        }
+
+        // Assign the new role
+        $user->syncRoles([$validated['role']]);
+
+        return back()->with('success', 'User updated successfully.');
+    }
+
+    /**
+     * Delete a user
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function deleteUser(User $user)
+    {
+        $user->delete();
+        return back()->with('success', 'User deleted successfully.');
+    }
+
+    /**
+     * Change user status (Active/Inactive)
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function changeStatus(Request $request, User $user)
+    {
+        $newStatus = ($user->status == 'Active') ? 'Inactive' : 'Active';
+        $user->status = $newStatus;
+        $user->save();
+
+        return response()->json(['status' => $newStatus]);
+    }
+
+    /**
+     * Change user password
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function changePassword(Request $request, User $user)
+    {
+        $validated = $request->validate([
+            'current_password' => 'required|string',
+            'new_password' => 'required|string|min:8|confirmed',
+        ]);
+
+        // Check if the current password matches
+        if (!Hash::check($validated['current_password'], $user->password)) {
+            return back()->withErrors(['current_password' => 'The current password is incorrect.']);
+        }
+
+        // Update the password
+        $user->password = Hash::make($validated['new_password']);
+        $user->save();
+
+        return back()->with('success', 'Password changed successfully.');
+    }
+    public function login(Request $request)
+{
+    // Validate form data
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required|min:8',
+    ]);
+
+    // Attempt to log the user in
+    if (\Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
+        return redirect()->intended('/dashboard'); // Redirect to intended page
+    }
+
+    // If authentication fails, flash an error message and redirect back
+    session()->flash('error', 'Invalid credentials, please try again.');
+
+    // Redirect back with validation errors and old input
+    return redirect()->back()->withInput();
+}
+
 }

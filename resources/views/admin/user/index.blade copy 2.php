@@ -28,12 +28,12 @@
                         </div>
                         <div class="mb-1 w-100">
                             <label for="email" class="form-label mb-1">Email ID</label>
-                            <input type="email" class="form-control w-100" id="email" name="email" value="{{ old('email') }}" required autocomplete="example@domain.com">
+                            <input type="email" class="form-control w-100" id="email" name="email" value="{{ old('email') }}" required>
                             @error('email') <div class="form-text text-danger">{{ $message }}</div> @enderror
                         </div>
                         <div class="mb-1 w-100">
                             <label for="password" class="form-label mb-1">Password</label>
-                            <input type="password" id="password" name="password" class="form-control w-100" required autocomplete="paswword_new">
+                            <input type="password" id="password" name="password" class="form-control w-100" required>
                             @error('password') <div class="form-text text-danger">{{ $message }}</div> @enderror
                         </div>
                         <div class="mb-1 w-100">
@@ -47,11 +47,7 @@
                                 <option value="">Select</option>
                                 <option value="Admin">Admin</option>
                                 <option value="Help Desk">Help Desk</option>
-                                <option value="Fulfillment Desk">Fulfillment Desk</option>
-                                <option value="Data Entry Operator">Data Entry Operator</option>
-                                <option value="Accounts">Accounts</option>
                                 <option value="Franchise">Franchise</option>
-                                <option value="Franchise Team Member">Franchise Team Member</option>
                             </select>
                             @error('role') <div class="form-text text-danger">{{ $message }}</div> @enderror
                         </div>
@@ -81,25 +77,18 @@
                         <div class="mb-1 w-100">
                             <label for="edit_name" class="form-label mb-1">Name</label>
                             <input type="text" class="form-control w-100" id="edit_name" name="name" required>
-                            <div class="form-text text-danger" id="edit_name_error"></div> <!-- Validation message -->
                         </div>
                         <div class="mb-1 w-100">
                             <label for="edit_email" class="form-label mb-1">Email ID</label>
                             <input type="email" class="form-control w-100" id="edit_email" name="email" required>
-                            <div class="form-text text-danger" id="edit_email_error"></div> <!-- Validation message -->
                         </div>
                         <div class="mb-1 w-100">
                             <label for="edit_role" class="form-label mb-1">Role</label>
                             <select class="form-select form-select-lg w-100" id="edit_role" name="role" required>
                                 <option value="Admin">Admin</option>
                                 <option value="Help Desk">Help Desk</option>
-                                <option value="Fulfillment Desk">Fulfillment Desk</option>
-                                <option value="Data Entry Operator">Data Entry Operator</option>
-                                <option value="Accounts">Accounts</option>
                                 <option value="Franchise">Franchise</option>
-                                <option value="Franchise Team Member">Franchise Team Member</option>
                             </select>
-                            <div class="form-text text-danger" id="edit_role_error"></div> <!-- Validation message -->
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -127,17 +116,14 @@
                         <div class="mb-1 w-100">
                             <label for="current_password" class="form-label mb-1">Current Password</label>
                             <input type="password" class="form-control w-100" id="current_password" name="current_password" required>
-                            <div class="form-text text-danger" id="current_password_error"></div> <!-- Validation message -->
                         </div>
                         <div class="mb-1 w-100">
                             <label for="new_password" class="form-label mb-1">New Password</label>
                             <input type="password" class="form-control w-100" id="new_password" name="new_password" required>
-                            <div class="form-text text-danger" id="new_password_error"></div> <!-- Validation message -->
                         </div>
                         <div class="mb-1 w-100">
                             <label for="new_password_confirmation" class="form-label mb-1">Confirm New Password</label>
                             <input type="password" class="form-control w-100" id="new_password_confirmation" name="new_password_confirmation" required>
-                            <div class="form-text text-danger" id="new_password_confirmation_error"></div> <!-- Validation message -->
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -150,34 +136,29 @@
     </div>
     <!-- Change Password Modal End -->
 
-
     <!-- Delete User Modal Start -->
     <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog">
             <div class="modal-content">
-                <form id="deleteUserForm" method="POST" action="{{ route('user.delete', ['user' => '__user_id__']) }}" autocomplete="off">
-                    @csrf
-                    @method('DELETE')
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="deleteUserModalLabel">Delete User</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this user?</p>
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="secondary-btn me-2" data-bs-dismiss="modal">Close</button>
+                        <form id="deleteUserForm" method="POST" action="{{ route('user.delete', ['user' => '__user_id__']) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="primary-btn">Yes, Delete</button>
+                        </form>
                     </div>
-                    <div class="modal-body">
-                        <p>Are you sure you want to delete this user?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="secondary-btn" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="primary-btn">Delete</button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
     <!-- Delete User Modal End -->
 
-    <div class="dataOverview mt-3">
-        <div class="table-responsive">
-            <table class="table" id="projectsTable">
+    <!-- Users Table -->
+    <div class="table-responsive">
+        <table class="table table-hover table-striped">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -191,22 +172,24 @@
                 <tr>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <td>{{ $user->getRoleNames()[0] }}</td>
+                    <td>{{ $user->role }}</td>
                     <td>
-                        <div class="dropdown">
-                            <i class="bi bi-three-dots-vertical" type="button"
-                                data-bs-toggle="dropdown" aria-expanded="false"></i>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item small editBtn" href="#" data-bs-toggle="modal" data-bs-target="#editUserModal"
-                                    data-id="{{ $user->id }}" data-name="{{ $user->name }}" data-email="{{ $user->email }}" data-role="{{ $user->getRoleNames()[0] }}">Edit</a></li>
-                                
-                                <li><a class="dropdown-item small" href="#" data-id="{{ $user->id }}" data-bs-toggle="modal"
-                                        data-bs-target="#changePasswordModal">Change Password</a>
-                                </li>
-                                
-                                <li><a class="dropdown-item small deleteBtn" href="#" data-bs-toggle="modal" data-bs-target="#deleteUserModal" data-id="{{ $user->id }}">Delete</a></li>
-
-                            </ul>
+                        <div class="d-flex justify-content-start">
+                            <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#editUserModal"
+                                data-id="{{ $user->id }}"
+                                data-name="{{ $user->name }}"
+                                data-email="{{ $user->email }}"
+                                data-role="{{ $user->role }}">
+                                Edit
+                            </button>
+                            <button class="btn btn-danger btn-sm ms-2" data-bs-toggle="modal" data-bs-target="#deleteUserModal"
+                                data-id="{{ $user->id }}">
+                                Delete
+                            </button>
+                            <button class="btn btn-warning btn-sm ms-2" data-bs-toggle="modal" data-bs-target="#changePasswordModal"
+                                data-id="{{ $user->id }}">
+                                Change Password
+                            </button>
                         </div>
                     </td>
                 </tr>
@@ -215,7 +198,7 @@
         </table>
     </div>
 </div>
-</div>
+
 @endsection
 
 @section('script')
@@ -234,7 +217,7 @@
             modal.find('#edit_email').val(email);
             modal.find('#edit_role').val(role);
 
-            var formAction = '{{ route('user.update', ['user' => '__user_id__']) }}'.replace('__user_id__', userId);
+            var formAction = '{{ route('user.update', ['user' => '']) }}' + '/' + userId;
             modal.find('form').attr('action', formAction);
         });
 
@@ -244,7 +227,7 @@
             var userId = button.data('id'); 
 
             var modal = $(this);
-            var formAction = '{{ route('user.change-password', ['user' => '__user_id__']) }}'.replace('__user_id__', userId);
+            var formAction = '{{ route('user.change-password', ['user' => '']) }}' + '/' + userId;
             modal.find('form').attr('action', formAction);
         });
 
@@ -254,54 +237,15 @@
             var userId = button.data('id'); 
 
             var modal = $(this);
-            var formAction = '{{ route('user.delete', ['user' => '__user_id__']) }}'.replace('__user_id__', userId);
-            modal.find('form').attr('action', formAction);
+            var formAction = '{{ route('user.delete', ['user' => '']) }}' + '/' + userId;
+            modal.find('#deleteUserForm').attr('action', formAction);
         });
 
         // jQuery Validation for User Forms
-        
-
-        $("#changePasswordForm").validate({
-            rules: {
-                current_password: { required: true },
-                new_password: { required: true, minlength: 6 },
-                new_password_confirmation: { equalTo: "#new_password" }
-            },
-            messages: {
-                current_password: "Please provide your current password",
-                new_password: { required: "Please provide a new password", minlength: "Your password must be at least 6 characters long" },
-                new_password_confirmation: { equalTo: "Please enter the same password again" }
-            },
-            errorElement: "div", // Use div to display errors
-            errorPlacement: function (error, element) {
-                error.addClass("form-text text-danger xsmall");
-                error.insertAfter(element); // Place the error directly after the input element
-            },
-            highlight: function (element) {
-                $(element).addClass("is-invalid").removeClass("is-valid");
-            },
-            unhighlight: function (element) {
-                $(element).removeClass("is-invalid").addClass("is-valid");
-            }
-        });
-    });
-</script>
-<script>
-    $(document).ready(function () {
-        // Add custom validation method for regex pattern
-        $.validator.addMethod("pattern", function (value, element, param) {
-            if (this.optional(element)) {
-                return true;
-            }
-            return param.test(value);
-        }, "Invalid format.");
-
-        // Initialize form validation
         $("#formAuthentication").validate({
             rules: {
                 name: {
-                    required: true,
-                    minlength: 3
+                    required: true
                 },
                 email: {
                     required: true,
@@ -309,11 +253,9 @@
                 },
                 password: {
                     required: true,
-                    minlength: 8,
-                    pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&]).+$/
+                    minlength: 6
                 },
                 password_confirmation: {
-                    required: true,
                     equalTo: "#password"
                 },
                 role: {
@@ -321,37 +263,41 @@
                 }
             },
             messages: {
-                name: {
-                    required: "Please enter your name",
-                    minlength: "Name must be at least 3 characters long"
-                },
-                email: {
-                    required: "Please enter your email",
-                    email: "Please enter a valid email address"
-                },
+                name: "Please enter your name",
+                email: "Please enter a valid email address",
                 password: {
-                    required: "Please enter your password",
-                    minlength: "Password must be at least 8 characters long",
-                    pattern: "Password must include uppercase, lowercase, number, and special character"
+                    required: "Please provide a password",
+                    minlength: "Your password must be at least 6 characters long"
                 },
                 password_confirmation: {
-                    required: "Please confirm your password",
-                    equalTo: "The password and its confirmation do not match"
+                    equalTo: "Please enter the same password again"
                 },
-                role: {
-                    required: "Please select a role"
+                role: "Please select a role"
+            }
+        });
+
+        $("#changePasswordForm").validate({
+            rules: {
+                current_password: {
+                    required: true
+                },
+                new_password: {
+                    required: true,
+                    minlength: 6
+                },
+                new_password_confirmation: {
+                    equalTo: "#new_password"
                 }
             },
-            errorElement: "div", // Use div to display errors
-            errorPlacement: function (error, element) {
-                error.addClass("form-text text-danger xsmall");
-                error.insertAfter(element); // Place the error directly after the input element
-            },
-            highlight: function (element) {
-                $(element).addClass("is-invalid").removeClass("is-valid");
-            },
-            unhighlight: function (element) {
-                $(element).removeClass("is-invalid").addClass("is-valid");
+            messages: {
+                current_password: "Please provide your current password",
+                new_password: {
+                    required: "Please provide a new password",
+                    minlength: "Your password must be at least 6 characters long"
+                },
+                new_password_confirmation: {
+                    equalTo: "Please enter the same password again"
+                }
             }
         });
     });

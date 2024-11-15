@@ -9,7 +9,19 @@ use Spatie\Permission\Models\Role;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminController;
 
+use Illuminate\Support\Facades\Artisan;
 
+Route::get('/clear-cache', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('route:clear');
+    Artisan::call('config:clear');
+    Artisan::call('view:clear');
+    Artisan::call('optimize');
+    Artisan::call('route:cache');
+    Artisan::call('config:cache');
+
+    return response()->json(['message' => 'All caches cleared and optimized.']);
+});
 Route::post('/appointments', [AppointmentController::class, 'store'])->name('appointments.store');
 Route::get('/appointments', function () {
     return view('frontend.schedule_appointment');
@@ -41,12 +53,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('super.admin.dashboard');
 });
+Route::post('/get-location', [AdminController::class, 'getLocationByPincode']);
+Route::middleware(['auth'])->group(function () {
+    
 
-Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::get('franchise_approval', [FranchiseTempController::class, 'index'])->name('franchise.temp.index');
    
 // Route to approve franchise
-Route::get('franchise/{id}/approve', [FranchiseTempController::class, 'approve'])->name('franchise.approve');
+// Route::get('franchise/{id}/approve', [FranchiseTempController::class, 'approve'])->name('franchise.approve');
+Route::put('/franchise/{franchise}/approve', [FranchiseTempController::class, 'approve'])->name('franchise.approve');
+
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 });
 
@@ -67,6 +83,7 @@ Route::middleware(['auth', 'role:Franchise'])->group(function () {
 
 
 Route::post('/franchise_temp/store', [FranchiseTempController::class, 'store'])->name('franchise_temp.store');
+Route::post('/franchise_temp/store_admin', [FranchiseTempController::class, 'store_admin'])->name('franchise_temp.store_admin');
 Route::get('franchise_approval', [FranchiseTempController::class, 'index'])->name('franchise.temp.index');
 
 // Route to approve franchise
@@ -78,8 +95,18 @@ Route::post('/custom-register', [RegisterController::class, 'register'])
 
 // User
 Route::get('user_list', [RegisterController::class, 'user_list'])->name('user.list');
-
-
+    // Edit user (using a PUT method)
+    Route::put('/users/{user}', [RegisterController::class, 'updateUser'])->name('user.update');
+    
+    // Delete user
+    Route::delete('/users/{user}', [RegisterController::class, 'deleteUser'])->name('user.delete');
+    
+    // Change status (Active/Inactive)
+    Route::post('/users/{user}/status', [RegisterController::class, 'changeStatus'])->name('user.status');
+    
+    // Change password
+    Route::put('/users/{user}/change-password', [RegisterController::class, 'changePassword'])->name('user.change-password');
+   
 //Product
 
 
@@ -90,4 +117,5 @@ Route::resource('products', ProductController::class);
 // Route to display the form
 Route::get('/product_create', [ProductController::class, 'create'])->name('products.create');
 Route::get('products_{id}', [ProductController::class, 'show'])->name('products.show');
+Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');

@@ -18,6 +18,8 @@
     
     <link rel="stylesheet" href="{{ asset('admin/CSS/menu.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/CSS/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/CSS/mutliselectInput.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/CSS/seachableInput.css') }}">
     @yield('css')
 </head>
 
@@ -50,17 +52,59 @@
         </div>
     </div>
     <!-- delete modal end -->
-    <!-- delete modal start -->
-    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <p style="color: green;font-weight:bold"></p>                   
-                </div>
+  
+<!-- success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="thankuModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <i class="bi bi-check-circle" style="color: #181818; font-size: 40px;"></i>
+                <h6 id="successMessage">Your Message</h6>
             </div>
         </div>
     </div>
-    <!-- delete modal end -->
+</div>
+
+
+<!-- error Modal -->
+<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="thankuModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <i class="bi bi-x-circle" style="color: #ff3f3f; font-size: 40px;"></i>
+                <h6 id="errorMessage">Your Message</h6>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Check for success message and show modal -->
+@if(session('success'))
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Set the message
+            document.getElementById('successMessage').textContent = "{{ session('success') }}";
+
+            // Show the modal
+            let successModal = new bootstrap.Modal(document.getElementById('successModal'));
+            successModal.show();
+        });
+    </script>
+@endif
+
+<!-- Check for error message and show modal -->
+@if(session('error'))
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Set the error message
+            document.getElementById('errorMessage').textContent = "{{ session('error') }}";
+
+            // Show the modal
+            let errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+            errorModal.show();
+        });
+    </script>
+@endif
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"
@@ -70,7 +114,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
     <!-- datatabel -->
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('admin/JS/datatable.js') }}"></script>
@@ -78,6 +122,9 @@
     <!-- menu script -->
     <script src="{{ asset('admin/JS/sidebar.js') }}"></script>
     <script src="{{ asset('admin/JS/menu.js') }}"></script>
+    <script src="{{ asset('admin/JS/franchise.js') }}"></script>
+    <script src="{{ asset('admin/JS/multiselectInput.js') }}"></script>
+    <script src="{{ asset('admin/JS/searchableselect.js') }}"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     @yield('script')
 </body>

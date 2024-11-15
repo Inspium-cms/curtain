@@ -42,6 +42,32 @@ class FranchiseTempController extends Controller
             'message' => 'Franchise information saved successfully!',
         ]); // HTTP 201 Created status    
     }
+    public function store_admin(Request $request)
+    {
+        // Validate the form data
+        $request->validate([
+            'company_name' => 'required|string|max:255',
+            'name' => 'nullable|string|max:255',
+            'email' => 'nullable|email|max:255',
+            'mobile' => 'nullable|string|max:20',
+            'alt_mobile' => 'nullable|string|max:20',
+            'employees' => 'nullable|integer',
+            'address' => 'nullable|string|max:255',
+            'pincode' => 'nullable|integer',
+            'city' => 'nullable|string|max:255',
+            'state' => 'nullable|string|max:255',
+            'country' => 'nullable|string|max:255',
+        ]);
+
+        // Store the form data in the database
+        $data=FranchiseTemp::create($request->all());
+        //if($data)
+        $mail=Mail::to($request->email)->send(new FranchiseInformationMail($request->all()));
+        // echo json_encode($request->all());die;
+        // Redirect with a success message
+        //if($mail)
+        return redirect()->back()->with('success', 'Franchise created successfully.');
+    }
     public function index()
     {
         // Fetch franchise temp data
@@ -87,31 +113,31 @@ class FranchiseTempController extends Controller
         //echo $franchiseTemp->mobile;die;
         $password = $this->generateSecurePassword(8);
         // Create a new user based on the franchise temp details
-        // $user = User::create([
-        //     'name' => $franchiseTemp->name,
-        //     'email' => $franchiseTemp->email,
-        //     'password' => Hash::make($password), // Use a secure method for passwords
-        //     // Add any other fields as necessary
-        // ]);
+        $user = User::create([
+            'name' => $franchiseTemp->name,
+            'email' => $franchiseTemp->email,
+            'password' => Hash::make($password), // Use a secure method for passwords
+            // Add any other fields as necessary
+        ]);
 
         // Assign franchise role to the user
-        // $user->assignRole('franchise'); // Ensure you have a role management system in place
+        $user->assignRole('Franchise'); // Ensure you have a role management system in place
 
         // Save additional franchise data
-        // Franchise::create([
-        //     'user_id' => $user->id,
-        //     'company_name' => $franchiseTemp->company_name,
-        //     'address' => $franchiseTemp->address,
-        //     'pincode' => $franchiseTemp->pincode,
-        //     'city' => $franchiseTemp->city,
-        //     'state' => $franchiseTemp->state,
-        //     'country' => $franchiseTemp->country,
-        //     'mobile' => $franchiseTemp->mobile,
-        //     // Add any other fields as necessary
-        // ]);
+        Franchise::create([
+            'user_id' => $user->id,
+            'company_name' => $franchiseTemp->company_name,
+            'address' => $franchiseTemp->address,
+            'pincode' => $franchiseTemp->pincode,
+            'city' => $franchiseTemp->city,
+            'state' => $franchiseTemp->state,
+            'country' => $franchiseTemp->country,
+            'mobile' => $franchiseTemp->mobile,
+            // Add any other fields as necessary
+        ]);
 
         // Optionally, delete or mark the franchise temp record as approved
-        // $franchiseTemp->delete();
+        $franchiseTemp->delete();
         $data=array(
             "name"=>$franchiseTemp->name,
             "username"=>$franchiseTemp->email,

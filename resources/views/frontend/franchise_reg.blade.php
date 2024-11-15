@@ -216,6 +216,31 @@
 </section>
 <script>
     $(document).ready(function() {
+        $('#pincode').on('blur', function() {
+            var pincode = $(this).val();
+            if (pincode) {
+                $.ajax({
+                    url: '/get-location',
+                    method: 'POST',
+                    data: {
+                        pincode: pincode,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        $('#country').val(response.country);
+                        $('#state').val(response.state);
+                        $('#city').val(response.city);
+                    },
+                    error: function() {
+                        alert('Location not found!');
+                    }
+                });
+            }
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {
         $("#contact-form1").validate({
             rules: {
                 company_name: "required",
@@ -306,7 +331,7 @@ window.iti = iti;
                 url: "{{ route('franchise_temp.store') }}", // Your server-side script to save data
                 data: formData,
                 success: function(response) {
-                    alert('ddd');
+                    //alert('ddd');
                     document.getElementById('contact-form1').style.display = 'none'; // Hide all form fields
     document.getElementById('form-title1').style.display = 'none';
     document.getElementById('thankYouMessage1').style.display = 'block'; // Show the thank you message
