@@ -26,9 +26,9 @@ jobs:
     - name: Deploy via FTP
       uses: SamKirkland/FTP-Deploy-Action@v3.1.1
       with:
-        server: ${{ secrets.FTP_HOST }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
+        ftp-server: ${{ secrets.FTP_HOST }}        # Your FTP server host
+        ftp-username: ${{ secrets.FTP_USERNAME }}  # Your FTP username
+        ftp-password: ${{ secrets.FTP_PASSWORD }}  # Your FTP password
         local-dir: ./ # Path to your Laravel project
         server-dir:  /home/desiboybackpacke/public_html/curtain.phakirsarada.com # Adjust this based on your hosting path
         log-level: verbose
