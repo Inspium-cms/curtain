@@ -12,6 +12,9 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v3
+      with:
+        fetch-depth: 0  # Fetch full history
+
 
     - name: Set up PHP
       uses: shivammathur/setup-php@v2
@@ -26,10 +29,11 @@ jobs:
     - name: Deploy via FTP
       uses: SamKirkland/FTP-Deploy-Action@v3.1.1
       with:
-        ftp-server: ${{ secrets.FTP_HOST }}        # Your FTP server host
-        ftp-username: ${{ secrets.FTP_USERNAME }}  # Your FTP username
-        ftp-password: ${{ secrets.FTP_PASSWORD }}  # Your FTP password
-        local-dir: ./ # Path to your Laravel project
+        ftp-server: ${{ secrets.FTP_HOST }}
+        ftp-username: ${{ secrets.FTP_USERNAME }}
+        ftp-password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: ./
+        git-ftp-args: --auto-init
         server-dir:  /home/desiboybackpacke/public_html/curtain.phakirsarada.com # Adjust this based on your hosting path
         log-level: verbose
 
