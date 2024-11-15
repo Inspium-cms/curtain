@@ -28,7 +28,7 @@ $('.service-carousel').owlCarousel({
     nav: false,
     autoplay: true,
     margin: 20,
-    autoplayTimeout: 1000,
+    autoplayTimeout: 4000,
     autoplayHoverPause: true,
     responsive: {
         0: {
@@ -122,7 +122,7 @@ $(document).ready(function () {
             nav: false,
             autoplay: true,
             margin: 20,
-            autoplayTimeout: 1000,
+            autoplayTimeout: 4000,
             autoplayHoverPause: true,
             responsive: {
                 0: {

@@ -3,9 +3,17 @@
         <div class="footerTop">
             <div class="row d-flex justify-content-between">
                 <div class="col-md-6 d-flex flex-column">
-                    <a class="p-2" href="#"><img class="me-3" src="images/location.svg" alt="">Find your
-                        location</a>
-                    <a class="p-2" href="#"><img class="me-3" src="images/call.svg" alt="">(888) 765 82737</a>
+                    <!-- <a class="p-2" href="#"><img class="me-3" src="images/location.svg" alt="">Find your
+                        location</a> -->
+                    <a class="p-2 d-flex align-items-center" href="tel:7838357850"><img class="me-2"
+                            style="max-width: 16px;" src="{{ asset('frontend/images/whatsapp.svg') }}"
+                            alt="">7838357850</a>
+                    <a class="p-2 d-flex align-items-center" href="tel:7838357850"><img class="me-2"
+                            style="max-width: 16px;" src="{{ asset('frontend/images/support.svg') }}"
+                            alt="">support@curtainsandblinds.in</a>
+                    <a class="p-2 d-flex align-items-center" href="mailto:info@curtainsandblinds.in"><img class="me-2"
+                            style="max-width: 16px;" src="{{ asset('frontend/images/mail.svg') }}"
+                            alt="">info@curtainsandblinds.in</a>
                 </div>
                 <div class="col-md-6 d-flex flex-column align-items-end">
                     <div>
@@ -29,31 +37,35 @@
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Curtains</a>
+                        <a class="nav-link" href="#">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Our Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact Us</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Terms & Conditions</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Accessibility</a>
-                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="#">Privacy Policy for California Residents</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">DO NOT SELL MY INFO</a>
                     </li>
                 </ul>
             </nav>
         </div>
 
         <div class="footer-content mt-4 w-75 m-auto">
-            <p class="text-center text-color">*Virtual consultations are not available at all locations. Not all
-                products available in Canada</p>
-            <p class="text-center text-color">©2024 Budget Blinds, LLC, All Rights Reserved. Budget Blinds is a
-                trademark of Budget Blinds, LLC and a Home Franchise Concepts Brand. Inspired Drapes is sold
-                exclusively through Budget Blinds and is a trademark of Budget Blinds, LLC. Each franchise is
-                independently owned and operated and may not offer all products represented on this website.</p>
+            <p class="text-center text-color">©2024 Curtains And Blinds, LLP, All Rights Reserved. Curtains And Blinds
+                is a trademark of Curtains And Blinds, LLP. Each franchise is independently owned and operated and may
+                not offer all products represented on this website.</p>
         </div>
     </div>
 </footer>

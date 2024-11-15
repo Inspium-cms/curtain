@@ -218,7 +218,7 @@ aria-hidden="true">
                         <div class="card product-card">
                             <img src="images/blinds3.jpg" alt="">
                             <div class="card-body p-4">
-                                <h4>Blockout Curtains</h4>
+                                <!-- <h4>Blockout Curtains</h4> -->
                                 <p class="m-0 text-color">Why settle for boring. Enjoy playing around with
                                     prints and jaquards and add to the flovour. Match it or contrast it with
                                     your curtains for that designer look</p>
@@ -314,8 +314,8 @@ aria-hidden="true">
 <!-- order-process -->
 <section class="order-process container wrapper">
 <h2 class="NewKansas-medium text-center">How to order</h2>
-<p class="m-auto text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio architecto quia
-    beatae dolores in quis corporis? Aperiam, magni delectu</p>
+<!-- <p class="m-auto text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio architecto quia
+    beatae dolores in quis corporis? Aperiam, magni delectu</p> -->
 <div class="row mt-4 p-4">
     <div class="col-md-6">
         <div class="accordion" id="customAccordionExample">
@@ -355,9 +355,7 @@ aria-hidden="true">
                 <div id="collapseTwo" class="accordion-collapse collapse"
                     data-bs-parent="#customAccordionExample">
                     <div class="accordion-body">
-                        We will get the CAB selection Box along with all the other information to your
-                        doorstep. Browse through the entire collection in your own sweet time. Play around
-                        with various permutations and combinations till you get your perfect match.
+                    Choose from over a 1000 fabric options along with all the other information in the comfort of your . Browse through the entire collection in your own sweet time. Play around with various permutations and combinations till you get your perfect match.
                     </div>
                 </div>
             </div>
@@ -601,7 +599,7 @@ aria-hidden="true">
 <section class="testimonial wrapper">
 <div class="container">
     <h2 class="NewKansas-medium text-center text-white">What do our customers say</h2>
-    <p class="text-center text-white mb-4">We can keep the same style and have many testimonials </p>
+    <p class="text-center text-white mb-4">We have to provide the material for this. We should be able to manage the blog part on our own</p>
     <div class="testimonial-carousel owl-carousel owl-theme">
         <div class="item">
             <div class="card testimonial-card">
@@ -851,9 +849,7 @@ aria-hidden="true">
                 </h2>
                 <div id="panelsStayOpen-collapse4" class="accordion-collapse collapse">
                     <div class="accordion-body">
-                        We believe in sharing is caring. As a gesture of goodwill and our client first
-                        policy we have shared the cost of shipping and charge only ———— per kg against ————-
-                        as regular price
+                    We believe in sharing is caring. As a gesture of goodwill and our client first policy we have shared the cost of shipping and charge only Rs 50 per kg.
                     </div>
                 </div>
             </div>

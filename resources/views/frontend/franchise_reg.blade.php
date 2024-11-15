@@ -37,8 +37,42 @@
 
 <section class="cab-usp container bg-dark wrapper" style="border-radius: 30px; padding: 42px;">
     <div class="container">
-        <h2 class="NewKansas-medium text-center text-white mb-4">3 Simple Step to Join Us</h2>
+        <h2 class="NewKansas-medium text-center text-white mb-4">Strong reasons to Join us</h2>
         <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <div class="card uspCard d-flex justify-content-center align-items-center flex-column"
+                            style="height: 314px; border-radius: 20px; padding: 30px 24px; text-align: center;">
+                            <img src="images/design.svg" class="mb-4" alt="">
+                            <p class="fs-small">#Reason 1</p>
+                            <p>Minimum Investement and maximum returns</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card uspCard d-flex justify-content-center align-items-center flex-column"
+                            style="height: 314px; border-radius: 20px; padding: 30px 24px; text-align: center;">
+                            <img src="images/machine.svg" class="mb-4" alt="">
+                            <p class="fs-small">#Reason 2</p>
+                            <p>No overheads of a store or office. Can easily be done from home.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card uspCard d-flex justify-content-center align-items-center flex-column"
+                            style="height: 314px; border-radius: 20px; padding: 30px 24px; text-align: center;">
+                            <img src="images/material.svg" class="mb-4" alt="">
+                            <p class="fs-small">#Reason 3</p>
+                            <p>No specialised staff is required to close the orders.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card uspCard d-flex justify-content-center align-items-center flex-column"
+                            style="height: 314px; border-radius: 20px; padding: 30px 24px; text-align: center;">
+                            <img src="images/material.svg" class="mb-4" alt="">
+                            <p class="fs-small">#Reason 4</p>
+                            <p>Basic team required for Installation and hand overs.</p>
+                        </div>
+                    </div>
+                </div>
+        <!-- <div class="row">
             <div class="col-md-4 mb-3">
                 <div class="card uspCard d-flex justify-content-center align-items-center flex-column"
                     style="height: 314px; border-radius: 20px; padding: 30px 24px; text-align: center;">
@@ -66,7 +100,7 @@
                     <p>Budget Blinds is here to help you design stylish window blinds for your home.</p>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </section>
 
