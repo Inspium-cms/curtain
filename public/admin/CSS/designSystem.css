@@ -526,9 +526,9 @@ input[type="file"] {
     object-position: center;
 }
 
-.ProductViewSidebar{
+.ProductViewSidebar, .FranciseViewSidebar{
     background-color: var(--white) !important;
-    width: 70% !important;
+    width: 50% !important;
 }
 
 table tbody tr{

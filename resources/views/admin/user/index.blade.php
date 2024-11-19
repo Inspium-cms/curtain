@@ -126,23 +126,38 @@
                     <div class="modal-body">
                         <div class="mb-1 w-100">
                             <label for="current_password" class="form-label mb-1">Current Password</label>
-                            <input type="password" class="form-control w-100" id="current_password" name="current_password" required>
+                            <div class="input-group w-100">
+                                <input type="password" class="form-control border-0" id="current_password" name="current_password" required>
+                                <button class="btn bg-transparent border-0 toggle-password" type="button" data-target="current_password">
+                                    <i class="bi bi-eye-slash"></i>
+                                </button>
+                            </div>
                             <div class="form-text text-danger" id="current_password_error"></div> <!-- Validation message -->
                         </div>
                         <div class="mb-1 w-100">
                             <label for="new_password" class="form-label mb-1">New Password</label>
-                            <input type="password" class="form-control w-100" id="new_password" name="new_password" required>
+                            <div class="input-group w-100">
+                                <input type="password" class="form-control border-0" id="new_password" name="new_password" required>
+                                <button class="btn bg-transparent border-0 toggle-password" type="button" data-target="new_password">
+                                    <i class="bi bi-eye-slash"></i>
+                                </button>
+                            </div>
                             <div class="form-text text-danger" id="new_password_error"></div> <!-- Validation message -->
                         </div>
                         <div class="mb-1 w-100">
                             <label for="new_password_confirmation" class="form-label mb-1">Confirm New Password</label>
-                            <input type="password" class="form-control w-100" id="new_password_confirmation" name="new_password_confirmation" required>
+                            <div class="input-group w-100">
+                                <input type="password" class="form-control border-0" id="new_password_confirmation" name="new_password_confirmation" required>
+                                <button class="btn bg-transparent border-0 toggle-password" type="button" data-target="new_password_confirmation">
+                                    <i class="bi bi-eye-slash"></i>
+                                </button>
+                            </div>
                             <div class="form-text text-danger" id="new_password_confirmation_error"></div> <!-- Validation message -->
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="secondary-btn" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="primary-btn">Change Password</button>
+                        <button type="button" class="secondary-btn addBtn" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="primary-btn addBtn">Change Password</button>
                     </div>
                 </form>
             </div>

@@ -166,13 +166,26 @@ $(document).ready(function () {
     });
 });
 
-// Function to toggle sections
+/**
+ * Toggles visibility of sections based on the presence of a zip code in the input field.
+ * - If a zip code is entered, hides the zip code input section and displays a redirect message.
+ *   Also redirects to the schedule appointment page after a delay.
+ * - If no zip code is entered, displays an error message prompting for a zip code.
+ */
 function toggleSections() {
     const zipCodeInput = document.getElementById('ZipCodeInput').value;
     if (zipCodeInput) {
         document.getElementById('checkzipCode').classList.add('d-none');
-        document.getElementById('showQR').classList.remove('d-none');
+        document.getElementById('redirectMsg').classList.remove('d-none');
+        document.getElementById('ZipCodeInput-error').classList.add('d-none');
+
+        // Redirect to schedule appointment page after 5 seconds
+        setTimeout(function() {
+            window.location.href = '/appointments'; // Replace with the actual URL
+        }, 3000);
     } else {
-        alert("Please enter a Zip Code.");
+        document.getElementById('ZipCodeInput-error').classList.remove('d-none');
+        //alert("Please enter a Zip Code.");
     }
 }
+

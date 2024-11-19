@@ -3,21 +3,21 @@
 <div class="info-tabs">
     <a href="{{ route('franchise.temp.index') }}">
         <div class="card info-card">
-            <img src="{{ asset('admin/images/tab-icon.svg') }}" alt="">
+            <img src="{{ asset('admin/images/tab_franchise.svg') }}" alt="">
             <h2 class="fw-bold m-0 mb-1">{{ count($franchise) }}</h2>
             <p class="m-0 small">Total number of Franchise</p>
         </div>
     </a>
     <a href="/products">
         <div class="card info-card">
-            <img src="{{ asset('admin/images/tab-icon.svg') }}" alt="">
+            <img src="{{ asset('admin/images/tab_products.svg') }}" alt="">
             <h2 class="fw-bold m-0 mb-1">{{ count($product) }}</h2>
             <p class="m-0 small">Total number of Products</p>
         </div>
     </a>
     <a href="/user_list">
         <div class="card info-card">
-            <img src="{{ asset('admin/images/tab-icon.svg') }}" alt="">
+            <img src="{{ asset('admin/images/tab_users.svg') }}" alt="">
             <h2 class="fw-bold m-0 mb-1">{{ count($user) }}</h2>
             <p class="m-0 small">Total number of Users</p>
         </div>
