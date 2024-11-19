@@ -49,7 +49,7 @@
                                 <th>City</th>
                                 <th>State</th>
                                 <th>Country</th>
-                                <th>Assign</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>

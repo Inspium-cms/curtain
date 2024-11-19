@@ -32,31 +32,28 @@
         <div class="nav-link-row mt-4">
             <nav class="navbar justify-content-center"
                 style="border-top: 1px solid; border-bottom: 1px solid; border-radius: 0px; padding: 0px !important;">
-                <ul class="navbar-nav d-flex flex-row p-0" style="column-gap: 64px;">
+                <ul class="navbar-nav d-flex flex-row p-0" style="column-gap: 64px; flex-wrap: wrap;">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link" href="/about">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About Us</a>
+                        <a class="nav-link" href="/our_products">Our Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Our Products</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Services</a>
+                        <a class="nav-link" href="/services">Services</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact Us</a>
+                        <a class="nav-link" href="/contact">Contact Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Terms & Conditions</a>
+                        <a class="nav-link" href="/terms_and_conditions">Terms & Conditions</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Privacy Policy for California Residents</a>
+                        <a class="nav-link" href="/privacy_policy">Privacy Policy</a>
                     </li>
                 </ul>
             </nav>

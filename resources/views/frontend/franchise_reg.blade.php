@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'Home')
+@section('title', 'Franchise Registration')
 @section('header_img')
 <img class="header-img" src="{{ asset('frontend/images/franchise-bg.jpg') }}" style="width: 100% !important;" alt="">
 @endsection
@@ -42,7 +42,7 @@
                     <div class="col-md-3 mb-3">
                         <div class="card uspCard d-flex justify-content-center align-items-center flex-column"
                             style="height: 314px; border-radius: 20px; padding: 30px 24px; text-align: center;">
-                            <img src="images/design.svg" class="mb-4" alt="">
+                            <img src="{{ asset('frontend/images/investment.svg') }}" class="mb-4" alt="">
                             <p class="fs-small">#Reason 1</p>
                             <p>Minimum Investement and maximum returns</p>
                         </div>
@@ -50,7 +50,7 @@
                     <div class="col-md-3 mb-3">
                         <div class="card uspCard d-flex justify-content-center align-items-center flex-column"
                             style="height: 314px; border-radius: 20px; padding: 30px 24px; text-align: center;">
-                            <img src="images/machine.svg" class="mb-4" alt="">
+                            <img src="{{ asset('frontend/images/home.svg') }}" class="mb-4" alt="">
                             <p class="fs-small">#Reason 2</p>
                             <p>No overheads of a store or office. Can easily be done from home.</p>
                         </div>
@@ -58,7 +58,7 @@
                     <div class="col-md-3 mb-3">
                         <div class="card uspCard d-flex justify-content-center align-items-center flex-column"
                             style="height: 314px; border-radius: 20px; padding: 30px 24px; text-align: center;">
-                            <img src="images/material.svg" class="mb-4" alt="">
+                            <img src="{{ asset('frontend/images/staff.svg') }}" class="mb-4" alt="">
                             <p class="fs-small">#Reason 3</p>
                             <p>No specialised staff is required to close the orders.</p>
                         </div>
@@ -66,7 +66,7 @@
                     <div class="col-md-3 mb-3">
                         <div class="card uspCard d-flex justify-content-center align-items-center flex-column"
                             style="height: 314px; border-radius: 20px; padding: 30px 24px; text-align: center;">
-                            <img src="images/material.svg" class="mb-4" alt="">
+                            <img src="{{ asset('frontend/images/team.svg') }}" class="mb-4" alt="">
                             <p class="fs-small">#Reason 4</p>
                             <p>Basic team required for Installation and hand overs.</p>
                         </div>
@@ -137,7 +137,7 @@
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="mobile" class="form-label col-md-12">Mobile Number<span class="requried">*</span></label>
-                        <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Enter Mobile Number" pattern="^[0-9]+$" style="width:34em;">
+                        <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Enter Mobile Number" pattern="^[0-9]+$" style="width:100%;">
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -205,10 +205,12 @@
             </div>
             <div class="col-md-6 d-flex justify-content-end align-items-center">
                 <div class="d-flex flex-column justify-content-end">
-                    <a href="tel:+91 987654321" class="NewKansas-medium mb-3" style="font-size: 22px;"><img
-                            src="{{ asset('frontend/images/call-fill.svg') }}" alt=""> +91 987654321</a>
-                    <a href="mailto:+91 987654321" class="NewKansas-medium" style="font-size: 22px;"><img
-                            src="{{ asset('frontend/images/mail-fill.svg') }}" alt=""> support@gmail.com</a>
+                    <a href="tel:+91 987654321" class="NewKansas-medium mb-3 form-bottom-info" style="font-size: 22px;"><img
+                            src="{{ asset('frontend/images/call-fill.svg') }}" alt=""> +91 7838357850</a>
+                    <a href="mailto:support@curtainsandblinds.in" class="NewKansas-medium mb-3 form-bottom-info" style="font-size: 22px;"><img
+                            src="{{ asset('frontend/images/mail-fill.svg') }}" alt=""> support@curtainsandblinds.in</a>
+                    <a href="mailto:info@curtainsandblinds.in" class="NewKansas-medium form-bottom-info" style="font-size: 22px;"><img
+                            src="{{ asset('frontend/images/mail-fill.svg') }}" alt=""> info@curtainsandblinds.in</a>
                 </div>
             </div>
         </div>

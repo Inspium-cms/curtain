@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'Home')
+@section('title', 'Schedule an appointment')
 @section('header_img')
 <img class="header-img" src="{{ asset('frontend/images/franchise-bg.jpg') }}" style="width: 100% !important;" alt="">
 @endsection
@@ -9,7 +9,7 @@
     <div class="breadcrumbs">
         <a class="text-white" href="/">Home </a>
         <i class="bi bi-arrow-right"></i>
-        <a class="text-white" href="#" class="active"> Franchise</a>
+        <a class="text-white" href="/appointments" class="active">Schedule Appointment</a>
     </div>
     <h1 class="text-white NewKansas-medium">Schedule an appointment</h1>
 </div>

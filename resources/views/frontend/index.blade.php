@@ -11,8 +11,7 @@
         <h1>Stylish curtains and blinds at honest and affordable prices</h1>
         <p>in the comfort of your home</p>
         <div class="hero-cta d-flex justify-content-start">
-            <button class="primary-btn me-3" data-bs-toggle="modal" data-bs-target="#BookHomeModal">Book
-                your appointment</button>
+            <a href="/appointments" class="primary-btn me-3">Book Your Appointment</a>
             <!-- <button class="primary-btn" data-bs-toggle="modal" data-bs-target="#BookHomeModal">Book for
                 Office</button> -->
         </div>
@@ -21,7 +20,7 @@
 @endsection
 @section('content')
  
-<div class="modal fade" id="BookHomeModal" tabindex="-1" aria-labelledby="BookHomeModalLabel"
+<!-- <div class="modal fade" id="BookHomeModal" tabindex="-1" aria-labelledby="BookHomeModalLabel"
 aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content d-flex flex-row justify-content-start align-items-center">
@@ -43,11 +42,11 @@ aria-hidden="true">
         </div>
     </div>
 </div>
-</div>
+</div> -->
 
 <section class="request_call wrapper">
 <div class="container">
-    <div class="row">
+    <div class="row align-items-center">
         <div class="col-md-6 content">
             <h4>Request an in-house consultation with our experts:</h4>
             <p>Just scan the QR code and let the experts get to work. Be prepared for a hassle free
@@ -62,15 +61,20 @@ aria-hidden="true">
                     <div class="mb-3">
                         <label for="ZipCodeInput" class="form-label text-white">Zip Code*</label>
                         <input type="text" class="form-control" id="ZipCodeInput" placeholder="Enter Zip Code" required>
+                        <label for="error" id="ZipCodeInput-error" class="text-danger p-0 ps-2 pe-2 pt-2 pb-1 m-0 d-none">Please enter a Zip Code.</label>
                     </div>
                     <button type="submit" class="btn gradient-btn" onclick="toggleSections()">Submit</button>
                 </div>
                 
-                <div id="showQR" class="d-flex justify-content-center align-items-center flex-column d-none">
+                <!-- <div id="showQR" class="d-flex justify-content-center align-items-center flex-column d-none">
                     <p class="text-white">Just scan the QR code and book an appointment.</p>
                     <div class="qrImage">
                         <img src="images/demoQR.jpeg" alt="QR Code">
                     </div>
+                </div> -->
+                <div id="redirectMsg" class="d-flex justify-content-center align-items-start flex-column d-none">
+                    <h4 class="text-white fs-4 NewKansas-medium m-0 mb-2">Awesome! You are in our service area 🎉</h4>
+                    <p class="text-white m-0">Redirecting you to our booking page...</p>
                 </div>
 
                 <!-- <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">

@@ -42,8 +42,27 @@ Route::get('/clear-cache', function () {
     return response()->json(['message' => 'All caches cleared and optimized.']);
 });
 Route::post('/appointments', [AppointmentController::class, 'store'])->name('appointments.store');
+
 Route::get('/appointments', function () {
     return view('frontend.schedule_appointment');
+});
+Route::get('/contact', function () {
+    return view('frontend.contact');
+});
+Route::get('/terms_and_conditions', function () {
+    return view('frontend.terms_and_conditions');
+});
+Route::get('/privacy_policy', function () {
+    return view('frontend.privacy_policy');
+});
+Route::get('/services', function () {
+    return view('frontend.services');
+});
+Route::get('/our_products', function () {
+    return view('frontend.our_products');
+});
+Route::get('/about', function () {
+    return view('frontend.about');
 });
 Route::get('/', function () {
     return view('frontend.index');
@@ -74,13 +93,13 @@ Route::middleware(['auth'])->group(function () {
 });
 Route::post('/get-location', [AdminController::class, 'getLocationByPincode']);
 Route::middleware(['auth'])->group(function () {
-    
+
 
     Route::get('franchise_approval', [FranchiseTempController::class, 'index'])->name('franchise.temp.index');
-   
-// Route to approve franchise
+
+    // Route to approve franchise
 // Route::get('franchise/{id}/approve', [FranchiseTempController::class, 'approve'])->name('franchise.approve');
-Route::put('/franchise/{franchise}/approve', [FranchiseTempController::class, 'approve'])->name('franchise.approve');
+    Route::put('/franchise/{franchise}/approve', [FranchiseTempController::class, 'approve'])->name('franchise.approve');
 
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 });
@@ -114,18 +133,18 @@ Route::post('/custom-register', [RegisterController::class, 'register'])
 
 // User
 Route::get('user_list', [RegisterController::class, 'user_list'])->name('user.list');
-    // Edit user (using a PUT method)
-    Route::put('/users/{user}', [RegisterController::class, 'updateUser'])->name('user.update');
-    
-    // Delete user
-    Route::delete('/users/{user}', [RegisterController::class, 'deleteUser'])->name('user.delete');
-    
-    // Change status (Active/Inactive)
-    Route::post('/users/{user}/status', [RegisterController::class, 'changeStatus'])->name('user.status');
-    
-    // Change password
-    Route::put('/users/{user}/change-password', [RegisterController::class, 'changePassword'])->name('user.change-password');
-   
+// Edit user (using a PUT method)
+Route::put('/users/{user}', [RegisterController::class, 'updateUser'])->name('user.update');
+
+// Delete user
+Route::delete('/users/{user}', [RegisterController::class, 'deleteUser'])->name('user.delete');
+
+// Change status (Active/Inactive)
+Route::post('/users/{user}/status', [RegisterController::class, 'changeStatus'])->name('user.status');
+
+// Change password
+Route::put('/users/{user}/change-password', [RegisterController::class, 'changePassword'])->name('user.change-password');
+
 //Product
 
 
