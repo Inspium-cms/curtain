@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title> @yield('title', 'Curtains & Blinds | Dashboard')</title>
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -20,6 +21,11 @@
     <link rel="stylesheet" href="{{ asset('admin/CSS/dashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/CSS/mutliselectInput.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/CSS/seachableInput.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+   
+    <!-- Fancybox Links -->
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
     @yield('css')
 </head>
 
@@ -37,21 +43,22 @@
         <!-- Footer -->
         @include('admin.layouts.footer')
         <!-- / Footer -->
-       <!-- delete modal start -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <p>Are your sure you want to delete?</p>
-                    <div class="d-flex justify-content-end">
-                        <button type="button" class="secondary-btn me-2 addBtn" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="primary-btn addBtn">Yes</button>
-                    </div>
+    <!-- delete modal start -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Are you sure you want to delete this item?</p>
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="secondary-btn me-2" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="confirmDelete" class="primary-btn">Yes</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- delete modal end -->
+</div>
+<!-- delete modal end -->
+
   
 <!-- success Modal -->
 <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="thankuModalLabel" aria-hidden="true">
@@ -110,6 +117,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"
         integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <!-- bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
@@ -126,6 +134,12 @@
     <script src="{{ asset('admin/JS/multiselectInput.js') }}"></script>
     <script src="{{ asset('admin/JS/searchableselect.js') }}"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script>
+        Fancybox.bind("[data-fancybox]", {
+            // Your custom options
+        });
+        $('.select2').select2();
+    </script>
     @yield('script')
 </body>
 

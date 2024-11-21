@@ -12,7 +12,7 @@ class ZipCode extends Model
 
     // Define the fillable fields
     protected $fillable = [
-        'pincode',
+        'zip_code',
         'country',
         'state',
         'city',
@@ -21,6 +21,6 @@ class ZipCode extends Model
     // Optionally, you can add methods to retrieve specific data
     public function scopeByPincode($query, $pincode)
     {
-        return $query->where('pincode', $pincode);
+        return $query->where('zip_code', $pincode);
     }
 }

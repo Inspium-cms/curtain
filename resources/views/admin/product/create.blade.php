@@ -15,8 +15,14 @@
                     <div class="row mb-2">
                         <div class="col-md-4">
                             <div class="mb-1 w-100">
-                                <label for="tally_code" class="form-label mb-1">Product Name <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control w-100" id="product_name" name="product_name" required>
+                                <label for="tally_code" class="form-label mb-1">Product Type <span class="text-danger">*</span></label>
+                                <select name="product_name" id="product_name" class="form-select w-100">
+                                    <option value="">Select</option>
+                                    @foreach ($productType as $productTypes)
+                                    <option value="{{ $productTypes->id }}">{{ $productTypes->product_type }}</option>
+                                    @endforeach
+                                </select>
+                               
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -37,28 +43,28 @@
                         <div class="col-md-4">
                             <label for="supplier_name" class="form-label m-0 mb-1">Supplier Name <span class="text-danger">*</span></label>
                             <select name="supplier_name" id="supplier_name" class="form-select w-100" required>
-                                <option value="" selected>Select</option>
-                                <option value="1">Blinds</option>
-                                <option value="2">Carpet Tiles</option>
-                                <option value="3">Wood Flooring</option>
+                                <option value="">Select</option>
+                                @foreach ($supplier as $suppliers)
+                                <option value="{{ $suppliers->id }}">{{ $suppliers->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col-md-4">
                             <label for="supplier_collection" class="form-label m-0 mb-1">Supplier Collection <span class="text-danger">*</span></label>
                             <select name="supplier_collection" id="supplier_collection" class="form-select w-100" required>
-                                <option value="" selected>Select</option>
-                                <option value="1">Blinds</option>
-                                <option value="2">Carpet Tiles</option>
-                                <option value="3">Wood Flooring</option>
+                                <option value="">Select</option>
+                                @foreach ($supplierCollection as $supplierCollections)
+                                <option value="{{ $supplierCollections->id }}">{{ $supplierCollections->collection_name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col-md-4">
                             <label for="supplier_collection_design" class="form-label m-0 mb-1">Supplier Collection Design <span class="text-danger">*</span></label>
                             <select name="supplier_collection_design" id="supplier_collection_design" class="form-select w-100" required>
-                                <option value="" selected>Select</option>
-                                <option value="1">Blinds</option>
-                                <option value="2">Carpet Tiles</option>
-                                <option value="3">Wood Flooring</option>
+                                <option value="">Select</option>
+                                @foreach ($supplierCollectionDesign as $supplierCollectionDesigns)
+                                <option value="{{ $supplierCollectionDesigns->id }}">{{ $supplierCollectionDesigns->design_name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -101,20 +107,13 @@
                     <div class="row mb-2">
                         <div class="col-md-4">
                             <label for="colour" class="form-label m-0 mb-1">Colour</label>
-                            <div class="selectMultiple">
-                                <div>
-                                    <span>Select</span>
-                                    <div class="arrow"></div>
-                                </div>
-                                <ul>
-                                    <div class="dropdown-search"><input type="text" class="search-input" placeholder="Search..."></div>
-                                    <li><input type="checkbox" id="colour1" name="colour[]" value="Beige & brown"> Beige & brown</li>
-                                    <li><input type="checkbox" id="colour2" name="colour[]" value="Blue"> Blue</li>
-                                    <li><input type="checkbox" id="colour3" name="colour[]" value="Green"> Green</li>
-                                    <li><input type="checkbox" id="colour4" name="colour[]" value="Grey & Black"> Grey & Black</li>
-                                    <li><input type="checkbox" id="colour5" name="colour[]" value="Metallics"> Metallics</li>
-                                </ul>
-                            </div>
+                            <select name="colour[]" id="colour" class="form-select w-100 select2">
+                                <option value="">select</option>
+                                @foreach ($color as $cx=>$colors)
+                                <option value="{{ $colors->id }}">{{ $colors->color }}</option>
+                                @endforeach
+                            </select>
+                            
                         </div>
                         <div class="col-md-4">
                             <label for="composition" class="form-label m-0 mb-1">Composition</label>
@@ -125,20 +124,19 @@
                                 </div>
                                 <ul>
                                     <div class="dropdown-search"><input type="text" class="search-input" placeholder="Search..."></div>
-                                    <li><input type="checkbox" id="composition1" name="composition[]" value="Cotton Blend"> Cotton Blend</li>
-                                    <li><input type="checkbox" id="composition2" name="composition[]" value="Silk blend"> Silk blend</li>
-                                    <li><input type="checkbox" id="composition3" name="composition[]" value="Suede"> Suede</li>
-                                    <li><input type="checkbox" id="composition4" name="composition[]" value="Linen blend"> Linen blend</li>
+                                    @foreach ($composition as $cm=>$compositions)
+                                    <li><input type="checkbox" id="composition{{ $cm }}" name="composition[]" value="{{ $compositions->id }}"> {{ $compositions->composition }}</li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <label class="form-label m-0 mb-1" for="type">Type <span class="text-danger">*</span></label>
                             <select name="type" id="type" class="form-select w-100" required>
-                                <option value="opt1">Select</option>
-                                <option value="opt2">Blinds</option>
-                                <option value="opt3">Carpet Tiles</option>
-                                <option value="opt4">Wood Flooring</option>
+                                <option value="">Select</option>
+                                @foreach ($type as $tp=>$types)
+                                <option value="{{ $types->id }}">{{ $types->type }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -153,10 +151,9 @@
                                 </div>
                                 <ul>
                                     <div class="dropdown-search"><input type="text" class="search-input" id="usageSearch" name="usageSearch" placeholder="Search..."></div>
-                                    <li><input type="checkbox" id="usage1" name="usage[]" value="Bedding"> Bedding</li>
-                                    <li><input type="checkbox" id="usage2" name="usage[]" value="Blinds"> Blinds</li>
-                                    <li><input type="checkbox" id="usage3" name="usage[]" value="Cushion"> Cushion</li>
-                                    <li><input type="checkbox" id="usage4" name="usage[]" value="Headboard"> Headboard</li>
+                                    @foreach ($usage as $ug=>$usages)
+                                    <li><input type="checkbox" id="usage{{ $ug }}" name="usage[]" value="{{ $usages->id }}"> {{ $usages->usages }}</li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -170,10 +167,9 @@
                                 </div>
                                 <ul>
                                     <div class="dropdown-search"><input type="text" class="search-input" id="designTypeOtherSearch" name="designTypeOtherSearch" placeholder="Search..."></div>
-                                    <li><input type="checkbox" id="designTypeFR" name="designTypeOther[]" value="FR"> FR</li>
-                                    <li><input type="checkbox" id="designTypeOutdoor" name="designTypeOther[]" value="Outdoor"> Outdoor</li>
-                                    <li><input type="checkbox" id="designTypePetProof" name="designTypeOther[]" value="Pet proof"> Pet proof</li>
-                                    <li><input type="checkbox" id="designTypeStainResistant" name="designTypeOther[]" value="Stain resistant"> Stain resistant</li>
+                                    @foreach ($designType as $dt=>$designTypes)
+                                    <li><input type="checkbox" id="designType{{ $dt }}" name="designTypeOther[]" value="{{ $designTypes->id }}"> {{ $designTypes->design_type }}</li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -260,6 +256,7 @@
 @endsection
 
 @section('script')
+
 <script>
     // Image Preview
     function previewImage(event) {
@@ -272,7 +269,8 @@
     }
 
     // jQuery Validation
-    $(document).ready(function(){
+    $(document).ready(function() {
+    
         $('#productForm').validate({
             rules: {
                 type: { required: true },

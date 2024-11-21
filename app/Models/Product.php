@@ -41,4 +41,41 @@ class Product extends Model
     ];
 
     // Optionally, you can add accessors and mutators for custom behavior if needed
+    public function ProductType()
+    {
+            return $this->belongsto(ProductType::class, 'product_name', 'id');
+    }
+    public function Supplier()
+    {
+            return $this->belongsto(Supplier::class, 'supplier_name', 'id');
+    }
+    public function SupplierCollection()
+    {
+            return $this->belongsto(SupplierCollection::class, 'supplier_collection', 'id');
+    }
+    public function SupplierCollectionDesign()
+    {
+            return $this->belongsto(SupplierCollectionDesign::class, 'supplier_collection_design', 'id');
+    }
+    public function Type()
+    {
+            return $this->belongsto(Type::class, 'type', 'id');
+    }
+    public function Color()
+    {
+            return $this->belongsto(Color::class, 'colour', 'id');
+    }
+    public function Composition()
+    {
+            return $this->belongsto(Composition::class, 'composition', 'id');
+    }
+    public function DesignType()
+    {
+            return $this->belongsto(DesignType::class, 'design_type', 'id');
+    }
+    public function Usage()
+    {
+            return $this->belongsto(Usage::class, 'usage_proj', 'id');
+    }
+    
 }

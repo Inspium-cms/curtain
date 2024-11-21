@@ -3,6 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Supplier;
+use App\Models\SupplierCollection;
+use App\Models\SupplierCollectionDesign;
+use App\Models\Color;
+use App\Models\Composition;
+use App\Models\DesignType;
+use App\Models\ProductType;
+use App\Models\Type;
+use App\Models\Usage;
+
+
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -10,7 +21,16 @@ class ProductController extends Controller
     // Show the "Add Product" form
     public function create()
     {
-        return view('admin.product.create');
+        $supplier=Supplier::all();
+        $supplierCollection=SupplierCollection::all();
+        $supplierCollectionDesign=SupplierCollectionDesign::all();
+        $color=Color::all();
+        $composition=Composition::all();
+        $designType=DesignType::all();
+        $productType=ProductType::all();
+        $type=Type::all();
+        $usage=Usage::all();
+        return view('admin.product.create',compact('supplier','supplierCollection','supplierCollectionDesign','color','composition','designType','productType','type','usage'));
     }
 
     // Store the product in the database
@@ -118,6 +138,31 @@ class ProductController extends Controller
     $product = Product::findOrFail($id); // Retrieve the product by ID
     return view('admin.product.view', compact('product')); // Pass the product data to the view
 }
+
+public function getProductDetails($productId)
+{
+    // Fetch the product with all the related models
+    $product = Product::with([
+        'ProductType',
+        'Supplier',
+        'getSupplierCollections',
+        'SupplierCollectionDesign',
+        'Type',
+        'Color',
+        'Composition',
+        'DesignType',
+        'Usage'
+    ])->find($productId);
+
+    // Check if the product exists
+    if (!$product) {
+        return redirect()->route('products.index')->with('error', 'Product not found');
+    }
+
+    // Return the view with the product data
+    return $product;
+}
+
 
 }
 

@@ -38,7 +38,7 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td class="w-10">
-                            <a href="{{ asset('storage/'.$product->image) }}" data-fancybox data-caption="Single image">
+                            <a href="{{ asset('storage/'.$product->image) }}" data-fancybox data-caption="{{ $product->tally_code }}">
                                 <img class="tabelImage" src="{{ asset('storage/'.$product->image) }}" alt="{{ $product->image_alt }}"/>
                             </a>
 
@@ -48,22 +48,21 @@
                         <td>{{ $product->supplier_name }}</td>
                         <td>{{ $product->mrp }}</td>
                         <td>{{ $product->unit }}</td>
-                        
                         <td>
                             <div class="dropdown">
                                 <i class="bi bi-three-dots-vertical" type="button"
                                     data-bs-toggle="dropdown" aria-expanded="false"></i>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item small" href="{{ route('products.edit', $product->id) }}">Edit</a></li>
-                                    <li><a class="dropdown-item small" data-bs-toggle="offcanvas"
-                                            href="#ProductView" role="button"
-                                            aria-controls="ProductView">View</a></li>
+                                    <li>
+                                        <a class="dropdown-item small viewProductLink" data-bs-toggle="offcanvas" href="#ProductView" role="button" aria-controls="ProductView" data-product-id="{{ $product->id }}">
+                                            View
+                                        </a>
+                                    </li>
                                     <li><a class="dropdown-item small" href="javascript:" onclick="openDeleteModal({{ $product->id }})">Delete</a></li>
                                 </ul>
                             </div>
-                            
-                        </td>
-                        
+                        </td>           
                     </tr>
                     @endforeach
                 </tbody>
@@ -71,6 +70,7 @@
         </div>
     </div>
 </div>
+
     <!-- Offcanvas Sidebar -->
     <div class="offcanvas ProductViewSidebar offcanvas-start" tabindex="-1" id="ProductView"
         aria-labelledby="ProductViewLabel">
@@ -80,126 +80,8 @@
         </div>
         <div class="offcanvas-body">
             <table class="table table-hover">
-                <tbody>
+                <tbody id="offcanvas-body">
 
-                <tbody>
-                    <tr>
-                        <th class="w-25">Product Type</th>
-                        <td>Carpet Tiles</td>
-                    </tr>
-                    <tr>
-                        <th class="w-25">Tally Code</th>
-                        <td>203144</td>
-                    </tr>
-                    <tr>
-                        <th class="w-25">File Number</th>
-                        <td>1571</td>
-                    </tr>
-                    <tr>
-                        <th class="w-25">Supplier Name</th>
-                        <td>My Floor</td>
-                    </tr>
-                    <tr>
-                        <th class="w-25">Supplier Collection</th>
-                        <td>Gravity</td>
-                    </tr>
-                    <tr>
-                        <th class="w-25">Supplier Collection Design</th>
-                        <td>300/SHADOW GREY</td>
-                    </tr>
-                    <tr>
-                        <th class="w-25">Design Sku</th>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th class="w-25">Rubs / Martendale</th>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th class="w-25">Image</th>
-                        <td>
-                            <a href="images/1.jpg" data-fancybox data-caption="Single image">
-                                <img class="tabelImage" src="images/1.jpg" />
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th class="w-25">Currency</th>
-                        <td>₹</td>
-                    </tr>
-                    <tr>
-                        <th class="w-25">Supplier Price</th>
-                        <td>82</td>
-                    </tr>
-                    <tr>
-                        <th class="w-25">Freight</th>
-                        <td>20</td>
-                    </tr>
-                    <tr>
-                        <th class="w-25">Duty %</th>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <th class="w-25">Profit %</th>
-                        <td>101</td>
-                    </tr>
-                    <tr>
-                        <th class="w-25">GST %</th>
-                        <td>12</td>
-                    </tr>
-                    <tr>
-                        <th class="w-25">MRP</th>
-                        <td>230</td>
-                    </tr>
-                    <tr>
-                        <th class="w-25">Unit</th>
-                        <td>/SQ FT</td>
-                    </tr>
-                    <tr>
-                        <th class="w-25">Colour</th>
-                        <td>Grey &amp; Black,</td>
-                    </tr>
-                    <tr>
-                        <th class="w-25">Composition</th>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th class="w-25">Design Type</th>
-                        <td>Texture,</td>
-                    </tr>
-                    <tr>
-                        <th class="w-25">Usage</th>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th class="w-25">Type (Technical specs)</th>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th class="w-25">Note</th>
-                        <td>Size-25cm X 100cm, 100% Solution Dyed Olefin, Satin Resistant, Anti Static, Flame Retardant,
-                            Packing-20 pcs/Box, Constructions- Multi Level Loop, Gauge-1/12", Stitches-10 Per Inch, Pile
-                            Weight-20 oz/yd2, Pile Height-4 mm, Backing-Eco Back(PVS Free), Warranty- 10 year Carpet
-                            Wear Warranty, Lifetime Anti-Stock Carpet Warranty, Ideal For Heavy Contract Use.</td>
-                    </tr>
-                </tbody>
-
-                <tr>
-                    <th>Product Type</th>
-                    <td>Carpet Tiles</td>
-                </tr>
-                <tr>
-                    <th>Tally Code</th>
-                    <td>203144</td>
-                </tr>
-                <tr>
-                    <th>File Number</th>
-                    <td>1571</td>
-                </tr>
-                <tr>
-                    <th>Supplier Name</th>
-                    <td>1571</td>
-                </tr>
                 </tbody>
             </table>
         </div>
@@ -341,5 +223,60 @@ function openDeleteModal(productId) {
     const deleteModal = new bootstrap.Modal(document.getElementById('deleteUserModal'));
     deleteModal.show();
 }
+</script>
+<script>
+    $(document).ready(function() {
+        $('.viewProductLink').on('click', function() {
+            var productId = $(this).data('product-id');
+            
+            // Send AJAX request to fetch product details
+            $.ajax({
+                url: '/product/' + productId + '/details', // Change this URL to your actual endpoint
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    if (response) {
+                        var product=response;
+                        
+                        // Populate the offcanvas with product details
+                        $('#ProductViewLabel').text(product.product_name);
+                        $('#offcanvas-body').html(`
+                            <tr><th class="w-25">Product Type</th><td>${product.product_type.product_type || '-'}</td></tr>
+                        <tr><th class="w-25">Tally Code</th><td>${product.tally_code || '-'}</td></tr>
+                        <tr><th class="w-25">File Number</th><td>${product.file_number || '-'}</td></tr>
+                        <tr><th class="w-25">Supplier Name</th><td>${product.supplier.name || '-'}</td></tr>
+                        <tr><th class="w-25">Supplier Collection</th><td>${product.getSupplierCollections || '-'}</td></tr>
+                        <tr><th class="w-25">Supplier Collection Design</th><td>${product.collection_design || '-'}</td></tr>
+                        <tr><th class="w-25">Image</th>
+                            <td>
+                                <a href="${product.image}" data-fancybox data-caption="Product Image">
+                                    <img class="tableImage" src="${product.image}" alt="Product Image" />
+                                </a>
+                            </td>
+                        </tr>
+                        <tr><th class="w-25">Currency</th><td>${product.currency || '-'}</td></tr>
+                        <tr><th class="w-25">Supplier Price</th><td>${product.supplier_price || '-'}</td></tr>
+                        <tr><th class="w-25">Freight</th><td>${product.freight || '-'}</td></tr>
+                        <tr><th class="w-25">Duty %</th><td>${product.duty_percentage || '-'}</td></tr>
+                        <tr><th class="w-25">Profit %</th><td>${product.profit_percentage || '-'}</td></tr>
+                        <tr><th class="w-25">GST %</th><td>${product.gst_percentage || '-'}</td></tr>
+                        <tr><th class="w-25">MRP</th><td>${product.mrp || '-'}</td></tr>
+                        <tr><th class="w-25">Unit</th><td>${product.unit || '-'}</td></tr>
+                        <tr><th class="w-25">Colour</th><td>${product.colour || '-'}</td></tr>
+                        <tr><th class="w-25">Composition</th><td>${product.composition || '-'}</td></tr>
+                        <tr><th class="w-25">Design Type</th><td>${product.design_type || '-'}</td></tr>
+                        <tr><th class="w-25">Usage</th><td>${product.usage || '-'}</td></tr>
+                        <tr><th class="w-25">Note</th><td>${product.note || '-'}</td></tr>
+                        `);
+                    } else {
+                        alert('Product not found');
+                    }
+                },
+                error: function() {
+                    alert('Error loading product details.');
+                }
+            });
+        });
+    });
 </script>
 @endsection

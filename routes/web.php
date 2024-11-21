@@ -8,8 +8,27 @@ use App\Http\Controllers\AppointmentController;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ZipCodeController;
+
 
 use Illuminate\Support\Facades\Artisan;
+
+use App\Http\Controllers\ProductTypeController;
+use App\Http\Controllers\DesignTypeController;
+use App\Http\Controllers\ColorController;
+use App\Http\Controllers\CompositionController;
+use App\Http\Controllers\SupplierCollectionController;
+use App\Http\Controllers\SupplierCollectionDesignController;
+use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\TypeController;
+use App\Http\Controllers\UsageController;
+
+
+
+
+
+
+
 
 Route::get('/clear-cache', function () {
     Artisan::call('cache:clear');
@@ -118,4 +137,20 @@ Route::resource('products', ProductController::class);
 Route::get('/product_create', [ProductController::class, 'create'])->name('products.create');
 Route::get('products_{id}', [ProductController::class, 'show'])->name('products.show');
 Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+// web.php
+Route::get('/product/{id}/details', [ProductController::class, 'getProductDetails'])->name('product.details');
+Route::resource('zipcodes', ZipCodeController::class);
+Route::post('zipcode/import', [ZipCodeController::class, 'import'])->name('zipcode.import');
+Route::get('zipcode/export', [ZipCodeController::class, 'export'])->name('zipcode.export');
+Route::resource('product-types', ProductTypeController::class);
+Route::resource('design-types', DesignTypeController::class);
+Route::resource('colors', ColorController::class);
+Route::resource('compositions', CompositionController::class);
+Route::resource('supplier-collections', SupplierCollectionController::class);
+Route::resource('supplierCollectionDesigns', SupplierCollectionDesignController::class);
+Route::resource('suppliers', SupplierController::class);
+Route::resource('types', TypeController::class);
+Route::resource('usages', UsageController::class);
+
+
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');

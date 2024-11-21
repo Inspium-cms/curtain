@@ -17,16 +17,16 @@
                     <li><a href=""><i class="bi bi-receipt-cutoff"></i><span class="text">Quotations</span></a></li>
                     <li><a href="#"><i class="bi bi-database"></i><span class="text">Masters</span><i class="arrow ph-bold ph-caret-down"></i></a>
                         <ul class="sub-menu">
-                            <li><a href=""><span class="text">ZIP Codes</span></a></li>
-                            <li><a href=""><span class="text">Product Type</span></a></li>
-                            <li><a href=""><span class="text">Supplier Name</span></a></li>
-                            <li><a href=""><span class="text">Supplier Collection</span></a></li>
-                            <li><a href=""><span class="text">Supplier Design</span></a></li>
-                            <li><a href=""><span class="text">Color</span></a></li>
-                            <li><a href=""><span class="text">Composition</span></a></li>
-                            <li><a href=""><span class="text">Type</span></a></li>
-                            <li><a href=""><span class="text">Usage</span></a></li>
-                            <li><a href=""><span class="text">Design Type</span></a></li>
+                            <li><a href="{{ route('zipcodes.index') }}"><span class="text">ZIP Codes</span></a></li>
+                            <li><a href="{{ route('product-types.index') }}"><span class="text">Product Type</span></a></li>
+                            <li><a href="{{ route('suppliers.index') }}"><span class="text">Supplier Name</span></a></li>
+                            <li><a href="{{ route('supplier-collections.index') }}"><span class="text">Supplier Collection</span></a></li>
+                            <li><a href="{{ route('supplierCollectionDesigns.index') }}"><span class="text">Supplier Design</span></a></li>
+                            <li><a href="{{ route('colors.index') }}"><span class="text">Color</span></a></li>
+                            <li><a href="{{ route('compositions.index') }}"><span class="text">Composition</span></a></li>
+                            <li><a href="{{ route('types.index') }}"><span class="text">Type</span></a></li>
+                            <li><a href="{{ route('usages.index') }}"><span class="text">Usage</span></a></li>
+                            <li><a href="{{ route('design-types.index') }}"><span class="text">Design Type</span></a></li>
                         </ul>
                     </li>
                     <li><a href="#"><i class="bi bi-truck"></i><span class="text">Orders</span></a></li>
@@ -40,16 +40,16 @@
                     <li><a href=""><i class="bi bi-receipt-cutoff"></i><span class="text">Quotations</span></a></li>
                     <li><a href="#"><i class="bi bi-database"></i><span class="text">Masters</span><i class="arrow ph-bold ph-caret-down"></i></a>
                         <ul class="sub-menu">
-                            <li><a href=""><span class="text">ZIP Codes</span></a></li>
-                            <li><a href=""><span class="text">Product Type</span></a></li>
-                            <li><a href=""><span class="text">Supplier Name</span></a></li>
-                            <li><a href=""><span class="text">Supplier Collection</span></a></li>
-                            <li><a href=""><span class="text">Supplier Design</span></a></li>
-                            <li><a href=""><span class="text">Color</span></a></li>
-                            <li><a href=""><span class="text">Composition</span></a></li>
-                            <li><a href=""><span class="text">Type</span></a></li>
-                            <li><a href=""><span class="text">Usage</span></a></li>
-                            <li><a href=""><span class="text">Design Type</span></a></li>
+                            <li><a href="{{ route('zipcodes.index') }}"><span class="text">ZIP Codes</span></a></li>
+                            <li><a href="{{ route('product-types.index') }}"><span class="text">Product Type</span></a></li>
+                            <li><a href="{{ route('suppliers.index') }}"><span class="text">Supplier Name</span></a></li>
+                            <li><a href="{{ route('supplier-collections.index') }}"><span class="text">Supplier Collection</span></a></li>
+                            <li><a href="{{ route('supplierCollectionDesigns.index') }}"><span class="text">Supplier Design</span></a></li>
+                            <li><a href="{{ route('colors.index') }}"><span class="text">Color</span></a></li>
+                            <li><a href="{{ route('compositions.index') }}"><span class="text">Composition</span></a></li>
+                            <li><a href="{{ route('types.index') }}"><span class="text">Type</span></a></li>
+                            <li><a href="{{ route('usages.index') }}"><span class="text">Usage</span></a></li>
+                            <li><a href="{{ route('design-types.index') }}"><span class="text">Design Type</span></a></li>
                         </ul>
                     </li>
                     <li><a href="#"><i class="bi bi-truck"></i><span class="text">Orders</span></a></li>
